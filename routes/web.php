@@ -14,6 +14,15 @@
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/cursos', function() {
+    return view('pages.majors');
+});
+
+
+
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

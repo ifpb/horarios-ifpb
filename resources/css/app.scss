@@ -15,6 +15,14 @@ a {
   @apply text-green-dark no-underline
 }
 
+a:hover {
+  @apply text-green-darker underline
+}
+
+h1 {
+  @apply text-2xl
+}
+
 header {
   a {
     @apply text-white no-underline
@@ -37,18 +45,25 @@ header {
     @apply appearance-none rounded-full w-full py-4 px-4 tracking-tight text-grey-darker text-sm outline-none
   }
 
-  .botao-menu-principal {
-    @apply py-4 w-full bg-green text-center font-semibold mb-px;
+  .button-main-menu {
+    @apply py-4 w-full bg-green text-center font-semibold mb-px flex items-center justify-center;
+
+    i {
+      @apply mr-3;
+    }
     &:last-child {
       @apply mb-0;
+    }
+    &:hover {
+      @apply no-underline text-white;
     }
   }
 
   @screen md {
-    .botao-menu-principal {
+    .button-main-menu {
       @apply bg-transparent
     }
-    .botao-menu-principal:hover {
+    .button-main-menu:hover {
       @apply bg-green
     }
   }
@@ -62,4 +77,67 @@ header {
 
 .container {
   @apply mx-auto
+}
+
+.categories {
+  @apply flex flex-col mt-5 bg-green-darker;
+
+  a {
+    @apply py-4 w-full bg-green text-center font-semibold mb-px text-white
+  }
+
+  a:hover {
+    @apply bg-green-dark underline
+  }
+}
+
+@screen md {
+  .categories {
+    @apply flex-row;
+
+    a { @apply mb-0 }
+    a:hover { @apply no-underline }
+  }
+}
+
+.search-input-filter {
+  @apply bg-grey-lighter w-full text-sm mt-4 px-5 py-4 rounded-full appearance-none outline-none
+}
+
+.majors {
+  @apply w-full mt-4 text-center;
+
+  thead {
+    @apply bg-green-dark text-white;
+
+    th {
+      @apply font-semibold py-3 hidden;
+    }
+
+    th:first-child {
+      @apply table-cell;
+    }
+
+    @screen md {
+      th {
+        display:table-cell;
+      }
+    }
+  }
+
+  tbody {
+    td {
+      @apply border py-3 px-2 hidden;
+    }
+
+    td:first-child {
+      @apply table-cell text-left;
+    }
+
+    @screen md {
+      td {
+        display:table-cell;
+      }
+    }
+  }
 }
