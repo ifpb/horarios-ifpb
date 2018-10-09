@@ -1,0 +1,65 @@
+/* Tailwind CSS */
+@tailwind preflight;
+@tailwind components;
+@tailwind utilities;
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800');
+
+body {
+  color: #4e4e4e;
+  font-family: "Open Sans", sans-serif;
+}
+
+a {
+  @apply text-green-dark no-underline
+}
+
+header {
+  a {
+    @apply text-white no-underline
+  }
+  .top-bar a {
+    @apply no-underline text-grey-darkest font-semibold px-3 block py-2 mx-1;
+    border-left: 1px solid config('colors.grey');
+    border-right: 1px solid config('colors.grey');
+
+    &:hover {
+      @apply underline;
+    }
+  }
+
+  .header-main {
+    background-image: radial-gradient(circle at 50% 55%, config('colors.green-dark'), config('colors.green-darker'));
+  }
+
+  .search-input {
+    @apply appearance-none rounded-full w-full py-4 px-4 tracking-tight text-grey-darker text-sm outline-none
+  }
+
+  .botao-menu-principal {
+    @apply py-4 w-full bg-green text-center font-semibold mb-px;
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+
+  @screen md {
+    .botao-menu-principal {
+      @apply bg-transparent
+    }
+    .botao-menu-principal:hover {
+      @apply bg-green
+    }
+  }
+
+  //@screen md {
+  //  .search-input {
+  //    @apply text-sm
+  //    }
+  //}
+}
+
+.container {
+  @apply mx-auto
+}
