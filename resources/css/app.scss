@@ -23,6 +23,10 @@ h1 {
   @apply text-2xl
 }
 
+h2 {
+  @apply text-lg font-semibold
+}
+
 header {
   a {
     @apply text-white no-underline
@@ -138,6 +142,58 @@ header {
       td {
         display:table-cell;
       }
+    }
+  }
+}
+
+.semesters {
+  @apply w-full flex flex-wrap mt-5 bg-green-darker;
+
+  a {
+    @apply py-4 w-1/4 bg-green text-center font-semibold mb-px text-white
+  }
+
+  a:hover {
+    @apply bg-green-dark no-underline
+  }
+}
+
+@screen md {
+  .semesters {
+    @apply flex-row flex-no-wrap;
+
+    a {
+      @apply flex-1 mb-0;
+    }
+  }
+}
+
+.schedule-scroller {
+  width:100%;
+  overflow-x:scroll;
+}
+
+@screen md {
+  .schedule-scroller {
+    overflow-x:initial;
+  }
+}
+
+.schedule {
+  min-width:700px;
+  @apply w-full mt-4 text-center;
+
+  thead {
+    @apply bg-green-dark text-white;
+
+    th {
+      @apply font-semibold py-3;
+    }
+  }
+
+  tbody {
+    td {
+      @apply border py-3 px-2;
     }
   }
 }

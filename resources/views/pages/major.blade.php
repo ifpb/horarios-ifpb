@@ -1,56 +1,157 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Cursos</h1>
+    <h1>Redes de Computadores</h1>
+    <h2 class="mt-2">1º periodo</h2>
 
-    <div class="categories">
-        <a href="#" >Geral</a>
-        <a href="#" >Integrado</a>
-        <a href="#" >Mestrado</a>
-        <a href="#" >Subsequente</a>
-        <a href="#" >Superior</a>
+    <div class="semesters">
+        <a href="#">1º</a>
+        <a href="#">2º</a>
+        <a href="#">3º</a>
+        <a href="#">4º</a>
+        <a href="#" >5º</a>
+        <a href="#" >6º</a>
+        <a href="#" >7º</a>
+        <a href="#" >8º</a>
+        <a href="#" >9º</a>
+        <a href="#" >10º</a>
+        <a href="#" >11º</a>
+        <a href="#" >12º</a>
     </div>
 
-    <input type="text" placeholder="Digite algo para filtrar" class="search-input-filter">
+    <div class="schedule-scroller">
+        <table class="schedule">
+            <thead>
+                <tr>
+                    <th>Horário</th>
+                    <th>Segunda</th>
+                    <th>Terça</th>
+                    <th>Quarta</th>
+                    <th>Quinta</th>
+                    <th>Sexta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                            <span class="font-bold">M1</span>
+                            <span class="text-sm">07:00 - 07:50</span>
+                        </div>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                            <span class="font-bold">PORT INSTR</span>
+                            <span class="text-sm">JAEL - U</span>
+                            <span class="text-sm text-red-dark">Sala 17</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                            <span class="font-bold">FIS APLIC COMP</span>
+                            <span class="text-sm">ALLYSSON M - U</span>
+                            <span class="text-sm text-red-dark">LAB FÍSIC</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                            <span class="font-bold">PORT INSTR</span>
+                            <span class="text-sm">JAEL - U</span>
+                            <span class="text-sm text-red-dark">Sala 17</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                            <span class="font-bold">PORT INSTR</span>
+                            <span class="text-sm">JAEL - U</span>
+                            <span class="text-sm text-red-dark">Sala 17</span>
+                        </div>
+                    </td>
+                </tr>
 
-    <table class="majors">
-        <thead>
-            <tr>
-                <th>Curso</th>
-                <th>Abreviação</th>
-                <th>Períodos</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><a href="#">Redes de Computadores</a></td>
-                <td>CST REDES</td>
-                <td>7</td>
-            </tr>
+                <tr>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                            <span class="font-bold">M1</span>
+                            <span class="text-sm">07:00 - 07:50</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                            <span class="font-bold">PORT INSTR</span>
+                            <span class="text-sm">JAEL - U</span>
+                            <span class="text-sm text-red-dark">Sala 17</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                            <span class="font-bold">PORT INSTR</span>
+                            <span class="text-sm">JAEL - U</span>
+                            <span class="text-sm text-red-dark">Sala 17</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                            <span class="font-bold">FIS APLIC COMP</span>
+                            <span class="text-sm">ALLYSSON M - U</span>
+                            <span class="text-sm text-red-dark">LAB FÍSIC</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                            <span class="font-bold">PORT INSTR</span>
+                            <span class="text-sm">JAEL - U</span>
+                            <span class="text-sm text-red-dark">Sala 17</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                        </div>
+                    </td>
+                </tr>
 
-            <tr>
-                <td><a href="#">Redes de Computadores</a></td>
-                <td>CST REDES</td>
-                <td>7</td>
-            </tr>
+                <tr>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                            <span class="font-bold">M1</span>
+                            <span class="text-sm">07:00 - 07:50</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                            <span class="font-bold">PORT INSTR</span>
+                            <span class="text-sm">JAEL - U</span>
+                            <span class="text-sm text-red-dark">Sala 17</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                            <span class="font-bold">PORT INSTR</span>
+                            <span class="text-sm">JAEL - U</span>
+                            <span class="text-sm text-red-dark">Sala 17</span>
+                        </div>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                            <span class="font-bold">PORT INSTR</span>
+                            <span class="text-sm">JAEL - U</span>
+                            <span class="text-sm text-red-dark">Sala 17</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="flex flex-col leading-normal">
+                            <span class="font-bold">PORT INSTR</span>
+                            <span class="text-sm">JAEL - U</span>
+                            <span class="text-sm text-red-dark">Sala 17</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-            <tr>
-                <td><a href="#">Redes de Computadores</a></td>
-                <td>CST REDES</td>
-                <td>7</td>
-            </tr>
-
-            <tr>
-                <td><a href="#">Redes de Computadores</a></td>
-                <td>CST REDES</td>
-                <td>7</td>
-            </tr>
-
-            <tr>
-                <td><a href="#">Redes de Computadores</a></td>
-                <td>CST REDES</td>
-                <td>7</td>
-            </tr>
-        </tbody>
-    </table>
 @endsection

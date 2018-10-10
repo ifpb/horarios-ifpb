@@ -6348,6 +6348,11 @@ h1 {
   font-size: 1.5rem;
 }
 
+h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
 header a {
   color: #fff;
   text-decoration: none;
@@ -6546,6 +6551,88 @@ header .button-main-menu:hover {
   .majors tbody td {
     display: table-cell;
   }
+}
+
+.semesters {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 1.25rem;
+  background-color: #185e25;
+}
+
+.semesters a {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  width: 25%;
+  background-color: #289c3d;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 1px;
+  color: #fff;
+}
+
+.semesters a:hover {
+  background-color: #248c37;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .semesters {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+  }
+
+  .semesters a {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    margin-bottom: 0;
+  }
+}
+
+.schedule-scroller {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+@media (min-width: 768px) {
+  .schedule-scroller {
+    overflow-x: initial;
+  }
+}
+
+.schedule {
+  min-width: 700px;
+  width: 100%;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.schedule thead {
+  background-color: #248c37;
+  color: #fff;
+}
+
+.schedule thead th {
+  font-weight: 600;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+}
+
+.schedule tbody td {
+  border-width: 1px;
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  padding-left: .5rem;
+  padding-right: .5rem;
 }
 
 @media (min-width: 576px) {

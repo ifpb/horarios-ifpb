@@ -19,7 +19,9 @@ Route::get('/cursos', function() {
     return view('pages.majors');
 });
 
-
+Route::get('/cursos/redes-de-computadores', function() {
+    return view('pages.major');
+});
 
 
 
