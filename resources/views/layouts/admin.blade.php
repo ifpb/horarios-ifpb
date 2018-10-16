@@ -8,9 +8,14 @@
             @include('partials.menu-admin')
         </div>
 
-        <div class="mt-2 md:ml-2 md:mt-0 md:flex-1">
-            @yield('content_admin')
+        <div class="content-admin mt-2 md:ml-4 md:mt-0 md:flex-1">
+            @yield('content-admin')
         </div>
     </div>
 
+@endsection
+
+@section('additional-css-js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.5/dist/sweetalert2.all.min.js"></script>
+    <script src="{{ asset('js/alerts.js') }}"></script>
 @endsection

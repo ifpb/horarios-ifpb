@@ -6334,6 +6334,17 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+label {
+  font-weight: 600;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  border-radius: 4px;
+}
+
 a {
   color: #248c37;
   text-decoration: none;
@@ -6661,6 +6672,23 @@ header .button-main-menu:hover {
   display: block;
   padding: .5rem;
   border-bottom-width: 1px;
+}
+
+.content-admin h2:first-child {
+  border-top-width: 4px;
+  border-color: #248c37;
+  background-color: #f1f5f8;
+  font-weight: 600;
+  color: #185e25;
+  font-size: .875rem;
+  padding: .5rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
+
+.content-admin td {
+  vertical-align: middle !important;
 }
 
 @media (min-width: 576px) {

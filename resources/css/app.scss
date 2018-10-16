@@ -11,6 +11,14 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+label {
+  @apply font-semibold;
+}
+
+button, [type="button"], [type="reset"], [type="submit"] {
+  border-radius: 4px;
+}
+
 a {
   @apply text-green-dark no-underline
 }
@@ -214,5 +222,14 @@ header {
       @apply block p-2 border-b;
     }
   }
+}
 
+.content-admin {
+  h2:first-child {
+    @apply border-t-4 border-green-dark bg-grey-lighter font-semibold text-green-darker text-sm p-2 pb-6 mb-5 uppercase;
+  }
+
+  td {
+    vertical-align : middle!important;
+  }
 }

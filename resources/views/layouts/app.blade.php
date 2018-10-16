@@ -104,5 +104,7 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
+
+    @yield('additional-css-js')
 </body>
 </html>

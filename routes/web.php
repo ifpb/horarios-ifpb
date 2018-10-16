@@ -23,9 +23,25 @@ Route::get('/cursos/redes-de-computadores', function() {
     return view('pages.major');
 });
 
-Route::get('/admin', function() {
-    return view('pages.admin.home');
+Route::group(array('prefix' => 'admin'), function()
+{
+    Route::get('/', function() {
+        return view('pages.admin.home');
+    });
+    Route::get('config-campus', function() {
+        return view('pages.admin.config-campus');
+    });
+
+
+    Route::get('salas', function() {
+        return view('pages.admin.salas.gerencia-salas');
+    });
+    Route::get('salas/adicionar', function() {
+        return view('pages.admin.salas.adicionar-sala');
+    });
 });
+
+
 
 
 Auth::routes();
