@@ -197,3 +197,22 @@ header {
     }
   }
 }
+
+.menu {
+  .menu-title {
+    @apply border-t-4 border-green-dark bg-grey-lighter font-semibold text-green-darker text-sm p-2 pb-6 uppercase;
+  }
+
+  a {
+    @apply text-grey-darker
+  }
+
+  ul {
+    @apply list-reset mb-8;
+
+    a {
+      @apply block p-2 border-b;
+    }
+  }
+
+}

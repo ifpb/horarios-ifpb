@@ -6635,6 +6635,34 @@ header .button-main-menu:hover {
   padding-right: .5rem;
 }
 
+.menu .menu-title {
+  border-top-width: 4px;
+  border-color: #248c37;
+  background-color: #f1f5f8;
+  font-weight: 600;
+  color: #185e25;
+  font-size: .875rem;
+  padding: .5rem;
+  padding-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.menu a {
+  color: #606f7b;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.menu ul a {
+  display: block;
+  padding: .5rem;
+  border-bottom-width: 1px;
+}
+
 @media (min-width: 576px) {
   .sm\:list-reset {
     list-style: none;

@@ -23,6 +23,9 @@ Route::get('/cursos/redes-de-computadores', function() {
     return view('pages.major');
 });
 
+Route::get('/admin', function() {
+    return view('pages.admin.home');
+});
 
 
 Auth::routes();

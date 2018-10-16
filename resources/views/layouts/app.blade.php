@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Horários IFPB - Instituto Federal da Paraíba') }}</title>
 
     <!-- Styles -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="flex min-h-screen flex-col">
