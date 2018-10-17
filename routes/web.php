@@ -94,6 +94,36 @@ Route::group(array('prefix' => 'admin'), function()
     Route::get('turmas/ver', function() {
         return view('pages.admin.educacional.turmas.ver-turma');
     });
+
+    Route::get('professores/vinculos', function() {
+        return view('pages.admin.professores.vinculos.tipos-de-vinculo');
+    });
+    Route::get('professores/vinculos/adicionar', function() {
+        return view('pages.admin.professores.vinculos.adicionar-vinculo');
+    });
+    Route::get('professores/vinculos/ver', function() {
+        return view('pages.admin.professores.vinculos.ver-vinculo');
+    });
+
+    Route::get('professores/regimes', function() {
+        return view('pages.admin.professores.regimes.tipos-de-regime');
+    });
+    Route::get('professores/regimes/adicionar', function() {
+        return view('pages.admin.professores.regimes.adicionar-regime');
+    });
+    Route::get('professores/regimes/ver', function() {
+        return view('pages.admin.professores.regimes.ver-regime');
+    });
+
+    Route::get('professores', function() {
+        return view('pages.admin.professores.professores.professores');
+    });
+    Route::get('professores/adicionar', function() {
+        return view('pages.admin.professores.professores.adicionar-professor');
+    });
+    Route::get('professores/ver', function() {
+        return view('pages.admin.professores.professores.ver-professor');
+    });
 });
 
 

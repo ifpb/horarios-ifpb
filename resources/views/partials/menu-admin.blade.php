@@ -8,6 +8,7 @@
 
 <ul>
     <li><a href="/admin/salas">Gerenciar Salas</a></li>
+    <li><a href="/admin/salas/reserva">Reserva de Salas</a></li>
 </ul>
 
 <p class="menu-title">Educacional</p>
