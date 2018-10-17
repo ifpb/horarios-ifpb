@@ -6704,6 +6704,16 @@ header .button-main-menu:hover {
   overflow-y: hidden;
 }
 
+.dataTables_wrapper .table {
+  border-width: 1px;
+}
+
+@media (min-width: 768px) {
+  .dataTables_wrapper .table {
+    border-width: 0;
+  }
+}
+
 .dataTables_wrapper .row:first-child,
 .dataTables_wrapper .row:last-child {
   display: -webkit-box;
@@ -6728,6 +6738,10 @@ header .button-main-menu:hover {
 .dataTables_wrapper .row:last-child > .col-sm-5,
 .dataTables_wrapper .row:last-child > .col-sm-7 {
   margin-bottom: .75rem;
+}
+
+.dataTables_wrapper tr > td:last-child {
+  white-space: nowrap;
 }
 
 @media (min-width: 768px) {

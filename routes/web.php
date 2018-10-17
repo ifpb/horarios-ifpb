@@ -34,7 +34,7 @@ Route::group(array('prefix' => 'admin'), function()
 
 
     Route::get('salas', function() {
-        return view('pages.admin.salas.gerencia-salas');
+        return view('pages.admin.salas.salas');
     });
     Route::get('salas/adicionar', function() {
         return view('pages.admin.salas.adicionar-sala');
@@ -63,6 +63,36 @@ Route::group(array('prefix' => 'admin'), function()
     });
     Route::get('niveis-de-ensino/ver', function() {
         return view('pages.admin.educacional.niveis.ver-nivel');
+    });
+
+    Route::get('cursos', function() {
+        return view('pages.admin.educacional.cursos.cursos');
+    });
+    Route::get('cursos/adicionar', function() {
+        return view('pages.admin.educacional.cursos.adicionar-curso');
+    });
+    Route::get('cursos/ver', function() {
+        return view('pages.admin.educacional.cursos.ver-curso');
+    });
+
+    Route::get('disciplinas', function() {
+        return view('pages.admin.educacional.disciplinas.disciplinas');
+    });
+    Route::get('disciplinas/adicionar', function() {
+        return view('pages.admin.educacional.disciplinas.adicionar-disciplina');
+    });
+    Route::get('disciplinas/ver', function() {
+        return view('pages.admin.educacional.disciplinas.ver-disciplina');
+    });
+
+    Route::get('turmas', function() {
+        return view('pages.admin.educacional.turmas.turmas');
+    });
+    Route::get('turmas/adicionar', function() {
+        return view('pages.admin.educacional.turmas.adicionar-turma');
+    });
+    Route::get('turmas/ver', function() {
+        return view('pages.admin.educacional.turmas.ver-turma');
     });
 });
 

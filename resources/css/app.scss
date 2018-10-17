@@ -247,12 +247,26 @@ header {
   height:auto;
   overflow-y: hidden;
 
+  .table {
+    @apply border;
+  }
+
+  @screen md {
+    .table {
+      @apply border-0
+    }
+  }
+
   .row:first-child, .row:last-child {
     @apply flex flex-col justify-between items-start;
 
     &> .col-sm-6, &> .col-sm-5, &> .col-sm-7 {
       @apply mb-3;
     }
+  }
+
+  tr > td:last-child {
+    white-space: nowrap;
   }
 
   @screen md {
