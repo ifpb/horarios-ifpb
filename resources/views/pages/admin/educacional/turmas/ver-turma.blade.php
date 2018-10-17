@@ -36,7 +36,10 @@
     <hr>
     <h2 class="mb-3">Salas Reservadas</h2>
 
-    <h2 class="mt-5">Sala 06</h2>
+    <div class="flex justify-between">
+        <h2 class="mt-5">Lab 02</h2>
+        <a href="/admin/turmas/ver" class="btn btn-danger mt-3" target="_blank">Remover reserva de sala</a>
+    </div>
 
     <div class="schedule-scroller">
         <table class="schedule">
@@ -175,7 +178,10 @@
         </table>
     </div>
 
-    <h2 class="mt-5">Lab 02</h2>
+    <div class="flex justify-between">
+        <h2 class="mt-5">Lab 02</h2>
+        <a href="/admin/turmas/ver" class="btn btn-danger mt-3" target="_blank">Remover reserva de sala</a>
+    </div>
 
     <div class="schedule-scroller">
         <table class="schedule">

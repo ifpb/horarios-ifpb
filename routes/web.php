@@ -34,13 +34,23 @@ Route::group(array('prefix' => 'admin'), function()
 
 
     Route::get('salas', function() {
-        return view('pages.admin.salas.salas');
+        return view('pages.admin.salas.salas.salas');
     });
     Route::get('salas/adicionar', function() {
-        return view('pages.admin.salas.adicionar-sala');
+        return view('pages.admin.salas.salas.adicionar-sala');
     });
     Route::get('salas/ver', function() { //Lembrar que vai ser o ID
-        return view('pages.admin.salas.ver-sala');
+        return view('pages.admin.salas.salas.ver-sala');
+    });
+
+    Route::get('salas/reservas', function() {
+        return view('pages.admin.salas.reservas.reservas');
+    });
+    Route::get('salas/reservas/adicionar', function() {
+        return view('pages.admin.salas.reservas.adicionar-reserva');
+    });
+    Route::get('salas/reservas/ver', function() { //Lembrar que vai ser o ID
+        return view('pages.admin.salas.reservas.ver-reserva');
     });
 
 
@@ -142,8 +152,6 @@ Route::group(array('prefix' => 'admin'), function()
         return view('pages.admin.sistema.backups.backups');
     });
 });
-
-
 
 
 Auth::routes();
