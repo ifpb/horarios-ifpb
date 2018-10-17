@@ -124,6 +124,23 @@ Route::group(array('prefix' => 'admin'), function()
     Route::get('professores/ver', function() {
         return view('pages.admin.professores.professores.ver-professor');
     });
+
+    Route::get('usuarios', function() {
+        return view('pages.admin.usuarios.usuarios');
+    });
+    Route::get('usuarios/adicionar', function() {
+        return view('pages.admin.usuarios.adicionar-usuario');
+    });
+    Route::get('usuarios/ver', function() {
+        return view('pages.admin.usuarios.ver-usuario');
+    });
+
+    Route::get('logs', function() {
+        return view('pages.admin.sistema.logs.logs');
+    });
+    Route::get('backups', function() {
+        return view('pages.admin.sistema.backups.backups');
+    });
 });
 
 

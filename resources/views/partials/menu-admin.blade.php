@@ -34,5 +34,5 @@
 <ul>
     <li><a href="/admin/usuarios">Gerenciamento de Usuários</a></li>
     <li><a href="/admin/logs">Logs de ações</a></li>
-    <li><a href="/admin/backup">Backup do Sistema</a></li>
+    <li><a href="/admin/backups">Backup do Sistema</a></li>
 </ul>
