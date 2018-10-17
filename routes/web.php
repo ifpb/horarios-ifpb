@@ -28,9 +28,9 @@ Route::group(array('prefix' => 'admin'), function()
     Route::get('/', function() {
         return view('pages.admin.home');
     });
-    Route::get('config-campus', function() {
-        return view('pages.admin.config-campus');
-    });
+
+    Route::get('config-campus', 'CampusConfigController@index');
+    Route::patch('config-campus', 'CampusConfigController@update');
 
 
     Route::get('salas', function() {
