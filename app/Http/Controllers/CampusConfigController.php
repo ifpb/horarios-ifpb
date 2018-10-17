@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\CampusConfig;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use App\Support\LogActivity;
 
 class CampusConfigController extends Controller
 {
@@ -40,6 +43,8 @@ class CampusConfigController extends Controller
         ]);
 
         $campus->update(request(['location', 'initials']));
+
+        LogActivity::store("Atualizou as configurações do Campus");
 
         flash('O campus foi atualizado!');
         return back();
