@@ -15,11 +15,11 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/cursos', function() {
+Route::get('cursos', function() {
     return view('pages.majors');
 });
 
-Route::get('/cursos/redes-de-computadores', function() {
+Route::get('cursos/redes-de-computadores', function() {
     return view('pages.major');
 });
 
@@ -38,6 +38,31 @@ Route::group(array('prefix' => 'admin'), function()
     });
     Route::get('salas/adicionar', function() {
         return view('pages.admin.salas.adicionar-sala');
+    });
+    Route::get('salas/ver', function() { //Lembrar que vai ser o ID
+        return view('pages.admin.salas.ver-sala');
+    });
+
+
+    Route::get('unidades-de-ensino', function() {
+        return view('pages.admin.educacional.unidades.unidades-de-ensino');
+    });
+    Route::get('unidades-de-ensino/adicionar', function() {
+        return view('pages.admin.educacional.unidades.adicionar-unidade');
+    });
+    Route::get('unidades-de-ensino/ver', function() {
+        return view('pages.admin.educacional.unidades.ver-unidade');
+    });
+
+
+    Route::get('niveis-de-ensino', function() {
+        return view('pages.admin.educacional.niveis.niveis-de-ensino');
+    });
+    Route::get('niveis-de-ensino/adicionar', function() {
+        return view('pages.admin.educacional.niveis.adicionar-nivel');
+    });
+    Route::get('niveis-de-ensino/ver', function() {
+        return view('pages.admin.educacional.niveis.ver-nivel');
     });
 });
 

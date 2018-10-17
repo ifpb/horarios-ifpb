@@ -8,17 +8,12 @@
             <span class="glyphicon glyphicon-plus"></span>
             Adicionar Sala
         </a>
-
-        <div class="input-group w-1/2 md:w-1/2">
-            <input type="email" class="form-control" placeholder="Digite o nome de uma sala">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Buscar</button>
-            </span>
-        </div>
     </div>
 
+    <div class="alert alert-success" role="alert">Nova sala adicionada com sucesso!</div>
+
     <div class="table-responsive">
-        <table class="table">
+        <table class="table dataTable">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -35,7 +30,7 @@
                     <td>Sala</td>
                     <td>0</td>
                     <td>
-                        <a class="btn btn-default" href="#" role="button">
+                        <a class="btn btn-default" href="/admin/salas/ver" role="button">
                             <span class="glyphicon glyphicon-eye-open"></span>
                         </a>
 

@@ -12,6 +12,6 @@
             <label for="exampleInputPassword1">Sigla</label>
             <input type="text" class="form-control" id="sigla" placeholder="Sigla">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Salvar Configurações</button>
     </form>
 @endsection

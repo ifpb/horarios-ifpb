@@ -12,10 +12,14 @@
             @yield('content-admin')
         </div>
     </div>
-
 @endsection
 
 @section('additional-css-js')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.5/dist/sweetalert2.all.min.js"></script>
-    <script src="{{ asset('js/alerts.js') }}"></script>
+    <script src="{{ asset('js/admin-functions.js') }}"></script>
+
+    {{--DataTables--}}
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 @endsection

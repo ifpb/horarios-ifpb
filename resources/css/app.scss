@@ -195,11 +195,15 @@ header {
     @apply bg-green-dark text-white;
 
     th {
-      @apply font-semibold py-3;
+      @apply font-semibold py-3 text-center;
     }
   }
 
   tbody {
+    tr:nth-child(n+7):nth-child(-n+12){
+      @apply bg-grey-lighter;
+    }
+
     td {
       @apply border py-3 px-2;
     }
@@ -225,11 +229,39 @@ header {
 }
 
 .content-admin {
+  h2 {
+    @apply text-xl;
+  }
+
   h2:first-child {
-    @apply border-t-4 border-green-dark bg-grey-lighter font-semibold text-green-darker text-sm p-2 pb-6 mb-5 uppercase;
+    @apply border-t-4 border-green-dark bg-grey-lighter font-semibold text-green-darker p-2 pb-6 mb-5 uppercase;
   }
 
   td {
     vertical-align : middle!important;
   }
+}
+
+// Correção dataTables
+.dataTables_wrapper {
+  height:auto;
+  overflow-y: hidden;
+
+  .row:first-child, .row:last-child {
+    @apply flex flex-col justify-between items-start;
+
+    &> .col-sm-6, &> .col-sm-5, &> .col-sm-7 {
+      @apply mb-3;
+    }
+  }
+
+  @screen md {
+    .row:first-child, .row:last-child {
+      @apply flex-row;
+    }
+  }
+}
+
+.table-responsive {
+  border:0px;
 }

@@ -3,15 +3,29 @@
 @section('content-admin')
     <h2>Adicionar Sala</h2>
 
+    <div class="alert alert-danger" role="alert">Houve um problema.</div>
+
     <form>
         <div class="form-group">
-            <label for="exampleInputEmail1">Cidade</label>
-            <input type="text" class="form-control" id="cidade" placeholder="Cidade">
+            <label for="">Tipo de sala</label>
+            <select class="form-control">
+                <option value="">Sala</option>
+                <option value="">Laboratório</option>
+            </select>
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Sigla</label>
-            <input type="text" class="form-control" id="sigla" placeholder="Sigla">
+            <label for="">Nome</label>
+            <input type="text" class="form-control" placeholder="Nome">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <label for="">Abreviação</label>
+            <input type="text" class="form-control" placeholder="Abreviação">
+            <span id="helpBlock" class="help-block">Máximo de 12 caracteres.</span>
+        </div>
+        <div class="form-group">
+            <label for="">Capacidade</label>
+            <input type="text" class="form-control" placeholder="Capacidade">
+        </div>
+        <button type="submit" class="btn btn-primary">Adicionar Sala</button>
     </form>
 @endsection
