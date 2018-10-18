@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\CampusConfig;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 use App\Support\LogActivity;
 
 class CampusConfigController extends Controller

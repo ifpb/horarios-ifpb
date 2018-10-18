@@ -20,6 +20,7 @@
                     <th>Abreviação</th>
                     <th>Tipo</th>
                     <th>Capacidade</th>
+                    <th>Bloco</th>
                     <th>Ação</th>
                 </tr>
             </thead>
@@ -29,6 +30,7 @@
                     <td>INFO 28</td>
                     <td>Sala</td>
                     <td>0</td>
+                    <td><a href="#">BLOCO INFO</a></td>
                     <td>
                         <a class="btn btn-default" href="/admin/salas/ver" role="button">
                             <span class="glyphicon glyphicon-eye-open"></span>
@@ -48,6 +50,7 @@
                     <td>LAB 06</td>
                     <td>Lab</td>
                     <td>30</td>
+                    <td><a href="#">BLOCO INFO</a></td>
                     <td>
                         <a class="btn btn-default" href="#" role="button">
                             <span class="glyphicon glyphicon-eye-open"></span>

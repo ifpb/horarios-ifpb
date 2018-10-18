@@ -7,6 +7,7 @@
 <p class="menu-title">Salas</p>
 
 <ul>
+    <li><a href="/admin/blocos">Gerenciar Blocos</a></li>
     <li><a href="/admin/salas">Gerenciar Salas</a></li>
     <li><a href="/admin/salas/reservas">Reserva de Salas</a></li>
 </ul>

@@ -18,8 +18,7 @@ class CreateTimesTable extends Migration
             $table->string('name');
             $table->time('starts');
             $table->time('ends');
-
-            $table->integer('shift_id')->unsigned();
+            $table->unsignedInteger('shift_id');
             $table->foreign('shift_id')->references('id')->on('shifts');
         });
     }

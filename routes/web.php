@@ -43,6 +43,16 @@ Route::group(array('prefix' => 'admin'), function()
         return view('pages.admin.salas.salas.ver-sala');
     });
 
+    Route::get('blocos', function() {
+        return view('pages.admin.salas.blocos.blocos');
+    });
+    Route::get('blocos/adicionar', function() {
+        return view('pages.admin.salas.blocos.adicionar-bloco');
+    });
+    Route::get('blocos/ver', function() { //Lembrar que vai ser o ID
+        return view('pages.admin.salas.blocos.ver-bloco');
+    });
+
     Route::get('salas/reservas', function() {
         return view('pages.admin.salas.reservas.reservas');
     });

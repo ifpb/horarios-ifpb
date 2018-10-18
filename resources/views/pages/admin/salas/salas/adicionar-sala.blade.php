@@ -14,6 +14,13 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="">Bloco</label>
+            <select class="form-control">
+                <option value="">Bloco de Informática - BLOCO INFO</option>
+                <option value="">Engenharia Eletrica 01 - ENG EL 01</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="">Nome</label>
             <input type="text" class="form-control" placeholder="Nome">
         </div>
