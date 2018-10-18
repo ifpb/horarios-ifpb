@@ -14,6 +14,7 @@
         <table class="table dataTable">
             <thead>
                 <tr>
+                    <td>Id</td>
                     <th>Nome</th>
                     <th>Abreviação</th>
                     <th>Salas</th>
@@ -21,24 +22,27 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Bloco de Informática</td>
-                    <td>BLOCO INFO</td>
-                    <td>15</td>
-                    <td>
-                        <a class="btn btn-default" href="/admin/blocos/ver" role="button">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                        </a>
+                @foreach($blocks as $block)
+                    <tr>
+                        <td>{{ $block->id }}</td>
+                        <td>{{ $block->name }}</td>
+                        <td>{{ $block->initials }}</td>
+                        <td>{{ $block->classrooms_count }}</td>
+                        <td>
+                            <a class="btn btn-default" href="{{ action('BlockController@show', [ 'id' => $block->id ]) }}" role="button">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>
 
-                        <a class="btn btn-default" href="#" role="button">
-                            <span class="glyphicon glyphicon-edit"></span>
-                        </a>
+                            <a class="btn btn-default" href="{{ action('BlockController@edit', [ 'id' => $block->id ]) }}" role="button">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
 
-                        <a class="btn btn-default" href="#" onClick="createWarning('#');return false;" role="button">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </a>
-                    </td>
-                </tr>
+                            <a class="btn btn-default" href="#" onClick="createWarning('{{ action('BlockController@destroy', [ 'id' => $block->id ]) }}');return false;" role="button">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

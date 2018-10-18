@@ -24,10 +24,8 @@ function createWarning(url, title, text) {
         confirmButtonColor: "#DD6B55",
         confirmButtonText: "Sim, desejo continuar!",
         cancelButtonText: "Cancelar",
-        closeOnConfirm: true
-    },
-    function(){
-        window.location = url;
+    }).then(result => {
+        if(result.value) window.location = url;
     });
 
     return false;

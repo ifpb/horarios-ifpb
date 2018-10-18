@@ -233,7 +233,7 @@ header {
     @apply text-xl;
   }
 
-  &> h2:first-child {
+  h2:first-child {
     @apply border-t-4 border-green-dark bg-grey-lighter font-semibold text-green-darker p-2 pb-6 mb-5 uppercase;
   }
 

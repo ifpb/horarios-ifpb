@@ -145,5 +145,16 @@ class BasicInfoSeeder extends Seeder
                 'shift_id' => $noturno
             ],
         ]);
+
+        DB::table('classroom_types')->insert([
+            [
+                'name' => 'Sala',
+                'prefix' => 'SALA'
+            ],
+            [
+                'name' => 'Laboratório',
+                'prefix' => 'LAB'
+            ]
+        ]);
     }
 }

@@ -32,26 +32,37 @@ Route::group(array('prefix' => 'admin'), function()
     Route::get('config-campus', 'CampusConfigController@index');
     Route::patch('config-campus', 'CampusConfigController@update');
 
+    // BLOCOS
+    Route::get('blocos', 'BlockController@index')->name('blocks');
+    Route::get('blocos/{block}/ver', 'BlockController@show')->name('blocks.show');
 
-    Route::get('salas', function() {
-        return view('pages.admin.salas.salas.salas');
-    });
-    Route::get('salas/adicionar', function() {
-        return view('pages.admin.salas.salas.adicionar-sala');
-    });
-    Route::get('salas/ver', function() { //Lembrar que vai ser o ID
-        return view('pages.admin.salas.salas.ver-sala');
-    });
+    Route::get('blocos/adicionar', 'BlockController@create')->name('blocks.create');
+    Route::post('blocos', 'BlockController@store')->name('blocks.store');
 
-    Route::get('blocos', function() {
-        return view('pages.admin.salas.blocos.blocos');
-    });
-    Route::get('blocos/adicionar', function() {
-        return view('pages.admin.salas.blocos.adicionar-bloco');
-    });
-    Route::get('blocos/ver', function() { //Lembrar que vai ser o ID
-        return view('pages.admin.salas.blocos.ver-bloco');
-    });
+    Route::get('blocos/{block}/editar', 'BlockController@edit')->name('blocks.edit');
+    Route::patch('blocos/{block}', 'BlockController@update')->name('blocks.update');
+    Route::get('blocos/{block}/remover', 'BlockController@destroy')->name('blocks.destroy');
+
+    // BLOCOS
+    Route::get('salas', 'ClassroomController@index')->name('classroom');
+    Route::get('salas/{block}/ver', 'ClassroomController@show')->name('classroom.show');
+
+    Route::get('salas/adicionar', 'ClassroomController@create')->name('classroom.create');
+    Route::post('salas', 'ClassroomController@store')->name('classroom.store');
+
+    Route::get('salas/{block}/editar', 'ClassroomController@edit')->name('classroom.edit');
+    Route::patch('salas/{block}', 'ClassroomController@update')->name('classroom.update');
+    Route::get('salas/{block}/remover', 'ClassroomController@destroy')->name('classroom.destroy');
+
+//    Route::get('salas', function() {
+//        return view('pages.admin.salas.salas.salas');
+//    });
+//    Route::get('salas/adicionar', function() {
+//        return view('pages.admin.salas.salas.adicionar-sala');
+//    });
+//    Route::get('salas/ver', function() { //Lembrar que vai ser o ID
+//        return view('pages.admin.salas.salas.ver-sala');
+//    });
 
     Route::get('salas/reservas', function() {
         return view('pages.admin.salas.reservas.reservas');

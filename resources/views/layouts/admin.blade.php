@@ -8,8 +8,12 @@
             @include('partials.menu-admin')
         </div>
 
-        <div class="content-admin mt-2 md:ml-4 md:mt-0 md:flex-1">
-            @yield('content-admin')
+        <div class="mt-2 md:ml-4 md:mt-0 md:flex-1">
+            @include('partials.alerts')
+            <div class="content-admin">
+                @yield('content-admin')
+            </div>
+
         </div>
     </div>
 @endsection

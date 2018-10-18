@@ -15,9 +15,10 @@ class CreateTimesTable extends Migration
     {
         Schema::create('times', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->time('starts');
             $table->time('ends');
+
             $table->unsignedInteger('shift_id');
             $table->foreign('shift_id')->references('id')->on('shifts');
         });
