@@ -5,7 +5,7 @@
 
     @include('partials.list-errors-form')
 
-    <form method="POST" action="{{ action('BlockController@update', $block->id) }}">
+    <form method="POST" action="{{ route('blocks.update', $block->id) }}">
         @method('PATCH')
         @csrf
 

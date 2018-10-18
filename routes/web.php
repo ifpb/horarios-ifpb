@@ -43,26 +43,16 @@ Route::group(array('prefix' => 'admin'), function()
     Route::patch('blocos/{block}', 'BlockController@update')->name('blocks.update');
     Route::get('blocos/{block}/remover', 'BlockController@destroy')->name('blocks.destroy');
 
-    // BLOCOS
-    Route::get('salas', 'ClassroomController@index')->name('classroom');
-    Route::get('salas/{block}/ver', 'ClassroomController@show')->name('classroom.show');
+    // SALAS
+    Route::get('salas', 'ClassroomController@index')->name('classrooms');
+    Route::get('salas/{classroom}/ver', 'ClassroomController@show')->name('classroom.show');
 
     Route::get('salas/adicionar', 'ClassroomController@create')->name('classroom.create');
     Route::post('salas', 'ClassroomController@store')->name('classroom.store');
 
-    Route::get('salas/{block}/editar', 'ClassroomController@edit')->name('classroom.edit');
-    Route::patch('salas/{block}', 'ClassroomController@update')->name('classroom.update');
-    Route::get('salas/{block}/remover', 'ClassroomController@destroy')->name('classroom.destroy');
-
-//    Route::get('salas', function() {
-//        return view('pages.admin.salas.salas.salas');
-//    });
-//    Route::get('salas/adicionar', function() {
-//        return view('pages.admin.salas.salas.adicionar-sala');
-//    });
-//    Route::get('salas/ver', function() { //Lembrar que vai ser o ID
-//        return view('pages.admin.salas.salas.ver-sala');
-//    });
+    Route::get('salas/{classroom}/editar', 'ClassroomController@edit')->name('classroom.edit');
+    Route::patch('salas/{classroom}', 'ClassroomController@update')->name('classroom.update');
+    Route::get('salas/{classroom}/remover', 'ClassroomController@destroy')->name('classroom.destroy');
 
     Route::get('salas/reservas', function() {
         return view('pages.admin.salas.reservas.reservas');

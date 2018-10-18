@@ -18,7 +18,7 @@ class CreateClassroomsTable extends Migration
 
             $table->string('name');
             $table->string('initials');
-            $table->integer('capacity');
+            $table->unsignedInteger('capacity');
 
             $table->unsignedInteger('classroom_type_id');
             $table->foreign('classroom_type_id')->references('id')->on('classroom_types')->onDelete('restrict');

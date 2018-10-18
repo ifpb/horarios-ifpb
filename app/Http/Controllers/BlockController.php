@@ -46,7 +46,7 @@ class BlockController extends Controller
         $block = Block::create(request(['name', 'initials', 'location']));
         LogActivity::store("Criou o bloco " . $block->id);
 
-        return redirect(action('BlockController@show', $block));
+        return redirect(route('blocks.show', $block));
     }
 
     /**
@@ -55,9 +55,9 @@ class BlockController extends Controller
      * @param  \App\Block  $block
      * @return \Illuminate\Http\Response
      */
-    public function show($block)
+    public function show(Block $block)
     {
-        $block = Block::with('classrooms.type')->findOrFail($block);
+        $block->load('classrooms.type');
         return view('pages.admin.salas.blocos.ver-bloco', compact('block'));
     }
 

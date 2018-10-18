@@ -3,12 +3,12 @@
 @section('content-admin')
     <h2>Bloco: {{ $block->name }}</h2>
 
-    <a class="btn btn-default mb-5" href="{{ action('BlockController@edit', [ 'id' => $block->id ]) }}" role="button">
+    <a class="btn btn-default mb-5" href="{{ route('blocks.edit', $block->id) }}" role="button">
         <span class="glyphicon glyphicon-edit"></span>
         Editar Bloco
     </a>
 
-    <a class="btn btn-danger mb-5" href="#" onClick="createWarning('{{ action('BlockController@destroy', [ 'id' => $block->id ]) }}');return false;" role="button">
+    <a class="btn btn-danger mb-5" href="#" onClick="createWarning('{{ route('blocks.destroy', $block->id) }}');return false;" role="button">
         <span class="glyphicon glyphicon-remove"></span>
         Remover Bloco
     </a>
@@ -56,7 +56,7 @@
                         <td>{{ $classroom->type->name }}</td>
                         <td>{{ $classroom->capacity }}</td>
                         <td>
-                            <a class="btn btn-default" href="{{ action('ClassroomController@show', [ 'id' => $classroom->id ]) }}" role="button">
+                            <a class="btn btn-default" href="{{ route('classroom.show', $classroom->id) }}" role="button">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                             </a>
                         </td>

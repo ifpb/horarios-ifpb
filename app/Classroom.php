@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Classroom extends Model
 {
+    protected $fillable = ['classroom_type_id', 'block_id', 'name', 'initials', 'capacity'];
+
     public function block()
     {
         return $this->belongsTo(Block::class);

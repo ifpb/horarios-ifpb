@@ -4,7 +4,7 @@
     <h2>Gerenciamento de Blocos</h2>
 
     <div class="flex mb-5 justify-between">
-        <a class="btn btn-default" href="/admin/blocos/adicionar" role="button">
+        <a class="btn btn-default" href="{{  route('blocks.create') }}" role="button">
             <span class="glyphicon glyphicon-plus"></span>
             Adicionar Bloco
         </a>
@@ -29,15 +29,15 @@
                         <td>{{ $block->initials }}</td>
                         <td>{{ $block->classrooms_count }}</td>
                         <td>
-                            <a class="btn btn-default" href="{{ action('BlockController@show', [ 'id' => $block->id ]) }}" role="button">
+                            <a class="btn btn-default" href="{{ route('blocks.show', $block->id) }}" role="button">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                             </a>
 
-                            <a class="btn btn-default" href="{{ action('BlockController@edit', [ 'id' => $block->id ]) }}" role="button">
+                            <a class="btn btn-default" href="{{ route('blocks.edit', $block->id) }}" role="button">
                                 <span class="glyphicon glyphicon-edit"></span>
                             </a>
 
-                            <a class="btn btn-default" href="#" onClick="createWarning('{{ action('BlockController@destroy', [ 'id' => $block->id ]) }}');return false;" role="button">
+                            <a class="btn btn-default" href="#" onClick="createWarning('{{ route('blocks.destroy', $block->id) }}');return false;" role="button">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </a>
                         </td>

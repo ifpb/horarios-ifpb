@@ -5,7 +5,7 @@
 
     @include('partials.list-errors-form')
 
-    <form method="POST" action="{{ action('BlockController@store') }}">
+    <form method="POST" action="{{ route('blocks.store') }}">
         @csrf
 
         <div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
