@@ -9,3 +9,7 @@ function flash($message, $alert_class = '')
     else
         session()->flash('alert_class', 'alert-success');
 }
+
+function extract_time($time) {
+    return date('H:i:s', strtotime($time));
+}
