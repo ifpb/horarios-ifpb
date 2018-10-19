@@ -76,16 +76,16 @@ Route::group(array('prefix' => 'admin'), function()
     Route::patch('unidades-de-ensino/{teachingUnit}', 'TeachingUnitController@update')->name('teachingunits.update');
     Route::get('unidades-de-ensino/{teachingUnit}/remover', 'TeachingUnitController@destroy')->name('teachingunits.destroy');
 
+    // Níveis de Ensino
+    Route::get('niveis-de-ensino', 'EducationLevelController@index')->name('educationlevels');
+    Route::get('niveis-de-ensino/{educationLevel}/ver', 'EducationLevelController@show')->name('educationlevels.show');
 
-    Route::get('niveis-de-ensino', function() {
-        return view('pages.admin.educacional.niveis.niveis-de-ensino');
-    });
-    Route::get('niveis-de-ensino/adicionar', function() {
-        return view('pages.admin.educacional.niveis.adicionar-nivel');
-    });
-    Route::get('niveis-de-ensino/ver', function() {
-        return view('pages.admin.educacional.niveis.ver-nivel');
-    });
+    Route::get('niveis-de-ensino/adicionar', 'EducationLevelController@create')->name('educationlevels.create');
+    Route::post('niveis-de-ensino', 'EducationLevelController@store')->name('educationlevels.store');
+
+    Route::get('niveis-de-ensino/{educationLevel}/editar', 'EducationLevelController@edit')->name('educationlevels.edit');
+    Route::patch('niveis-de-ensino/{educationLevel}', 'EducationLevelController@update')->name('educationlevels.update');
+    Route::get('niveis-de-ensino/{educationLevel}/remover', 'EducationLevelController@destroy')->name('educationlevels.destroy');
 
     Route::get('cursos', function() {
         return view('pages.admin.educacional.cursos.cursos');

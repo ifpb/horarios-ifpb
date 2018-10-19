@@ -1,19 +1,26 @@
 @extends('layouts.admin')
 
 @section('content-admin')
-    <h2>Nível: Integrado</h2>
+    <h2>Nível: {{ $educationLevel->name }}</h2>
 
-    <a class="btn btn-default mb-5" href="#" onClick="createWarning('#');return false;" role="button">
-        <span class="glyphicon glyphicon-minus"></span>
+    <a class="btn btn-default mb-5" href="{{ route('educationlevels.edit', $educationLevel->id) }}" role="button">
+        <span class="glyphicon glyphicon-edit"></span>
+        Editar Nível
+    </a>
+
+    <a class="btn btn-danger mb-5" href="#" onClick="createWarning('{{ route('educationlevels.destroy', $educationLevel->id) }}');return false;" role="button">
+        <span class="glyphicon glyphicon-remove"></span>
         Remover Nível
     </a>
 
     <form>
         <div class="form-group">
-            <label for="">Nome</label>
-            <input type="text" class="form-control" value="Integrado" disabled>
+            <label for="name">Nome</label>
+            <input type="text" class="form-control" id="name" value="{{ $educationLevel->name }}" disabled>
         </div>
     </form>
+
+    {{--TODO: Dinamizar exibição de cursos--}}
 
     <hr>
     <h2 class="mb-3">Cursos</h2>

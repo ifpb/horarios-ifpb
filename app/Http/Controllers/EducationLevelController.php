@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\EducationLevel;
-use Illuminate\Http\Request;
+use App\Support\LogActivity;
 
 class EducationLevelController extends Controller
 {
@@ -14,7 +14,8 @@ class EducationLevelController extends Controller
      */
     public function index()
     {
-        //
+        $educationLevels = EducationLevel::all();
+        return view('pages.admin.educacional.niveis.niveis-de-ensino', compact('educationLevels'));
     }
 
     /**
@@ -24,7 +25,7 @@ class EducationLevelController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.educacional.niveis.adicionar-nivel');
     }
 
     /**
@@ -33,9 +34,16 @@ class EducationLevelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        request()->validate([
+            'name' => 'required|min:2|unique:education_levels',
+        ]);
+
+        $educationLevel = EducationLevel::create(request(['name']));
+        LogActivity::store("Criou o nível de educação " . $educationLevel->id);
+
+        return redirect(route('educationlevels.show', $educationLevel->id));
     }
 
     /**
@@ -46,7 +54,7 @@ class EducationLevelController extends Controller
      */
     public function show(EducationLevel $educationLevel)
     {
-        //
+        return view('pages.admin.educacional.niveis.ver-nivel', compact('educationLevel'));
     }
 
     /**
@@ -57,7 +65,7 @@ class EducationLevelController extends Controller
      */
     public function edit(EducationLevel $educationLevel)
     {
-        //
+        return view('pages.admin.educacional.niveis.editar-nivel', compact('educationLevel'));
     }
 
     /**
@@ -67,9 +75,16 @@ class EducationLevelController extends Controller
      * @param  \App\EducationLevel  $educationLevel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EducationLevel $educationLevel)
+    public function update(EducationLevel $educationLevel)
     {
-        //
+        request()->validate([
+            'name' => 'required|min:2|unique:education_levels,name,'.$educationLevel->id
+        ]);
+
+        $educationLevel->update(request(['name']));
+        LogActivity::store("Atualizou informações do nível de ensino id " . $educationLevel->id);
+
+        return redirect(route('educationlevels.show', $educationLevel->id));
     }
 
     /**
@@ -80,6 +95,11 @@ class EducationLevelController extends Controller
      */
     public function destroy(EducationLevel $educationLevel)
     {
-        //
+        LogActivity::store("Removeu o nível de ensino ".$educationLevel->id." de nome ".$educationLevel->name);
+
+        $educationLevel->delete();
+
+        flash('O nível de ensino foi removido!');
+        return redirect(route('educationlevels'));
     }
 }
