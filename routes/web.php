@@ -65,15 +65,16 @@ Route::group(array('prefix' => 'admin'), function()
     });
 
 
-    Route::get('unidades-de-ensino', function() {
-        return view('pages.admin.educacional.unidades.unidades-de-ensino');
-    });
-    Route::get('unidades-de-ensino/adicionar', function() {
-        return view('pages.admin.educacional.unidades.adicionar-unidade');
-    });
-    Route::get('unidades-de-ensino/ver', function() {
-        return view('pages.admin.educacional.unidades.ver-unidade');
-    });
+    // UNIDADES DE ENSINO
+    Route::get('unidades-de-ensino', 'TeachingUnitController@index')->name('teachingunits');
+    Route::get('unidades-de-ensino/{teachingUnit}/ver', 'TeachingUnitController@show')->name('teachingunits.show');
+
+    Route::get('unidades-de-ensino/adicionar', 'TeachingUnitController@create')->name('teachingunits.create');
+    Route::post('unidades-de-ensino', 'TeachingUnitController@store')->name('teachingunits.store');
+
+    Route::get('unidades-de-ensino/{teachingUnit}/editar', 'TeachingUnitController@edit')->name('teachingunits.edit');
+    Route::patch('unidades-de-ensino/{teachingUnit}', 'TeachingUnitController@update')->name('teachingunits.update');
+    Route::get('unidades-de-ensino/{teachingUnit}/remover', 'TeachingUnitController@destroy')->name('teachingunits.destroy');
 
 
     Route::get('niveis-de-ensino', function() {

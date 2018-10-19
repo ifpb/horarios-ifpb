@@ -156,5 +156,13 @@ class BasicInfoSeeder extends Seeder
                 'prefix' => 'LAB'
             ]
         ]);
+
+        DB::table('education_levels')->insert([
+            [ 'name' => 'Geral' ],
+            [ 'name' => 'Integrado' ],
+            [ 'name' => 'Mestrado' ],
+            [ 'name' => 'Subsequente' ],
+            [ 'name' => 'Superior' ]
+        ]);
     }
 }

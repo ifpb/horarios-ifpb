@@ -43,7 +43,13 @@ class ClassroomController extends Controller
      */
     public function store()
     {
-        $this->validateClassroom();
+        request()->validate([
+            'classroom_type_id' => 'required|exists:classroom_types,id',
+            'block_id' => 'required|exists:blocks,id',
+            'name' => 'required|min:2|unique:classrooms',
+            'initials' => 'required|max:12|unique:classrooms',
+            'capacity' => 'required|integer',
+        ]);
 
         $classroom = Classroom::create(request(['classroom_type_id', 'block_id', 'name', 'initials', 'capacity']));
         LogActivity::store("Criou a sala " . $classroom->id);
@@ -88,7 +94,13 @@ class ClassroomController extends Controller
      */
     public function update(Classroom $classroom)
     {
-        $this->validateClassroom();
+        request()->validate([
+            'classroom_type_id' => 'required|exists:classroom_types,id',
+            'block_id' => 'required|exists:blocks,id',
+            'name' => 'required|min:2|unique:classrooms,name,' . $classroom->id,
+            'initials' => 'required|max:12|unique:classrooms,initials,'. $classroom->id,
+            'capacity' => 'required|integer',
+        ]);
 
         $classroom->update(request(['classroom_type_id', 'block_id', 'name', 'initials', 'capacity']));
         LogActivity::store("Atualizou informações da Sala de aula id " . $classroom->id);
@@ -111,16 +123,5 @@ class ClassroomController extends Controller
 
         flash('A sala foi removido!');
         return redirect(route('classrooms'));
-    }
-
-    public function validateClassroom()
-    {
-        request()->validate([
-            'classroom_type_id' => 'required|exists:classroom_types,id',
-            'block_id' => 'required|exists:blocks,id',
-            'name' => 'required|min:2|unique:classrooms',
-            'initials' => 'required|max:12|unique:classrooms',
-            'capacity' => 'required|integer',
-        ]);
     }
 }

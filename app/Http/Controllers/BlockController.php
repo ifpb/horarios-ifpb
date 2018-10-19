@@ -41,7 +41,11 @@ class BlockController extends Controller
      */
     public function store()
     {
-        $this->validateBlock();
+        request()->validate([
+            'name' => 'required|min:2|unique',
+            'initials' => 'required|max:12|unique',
+            'location' => 'required',
+        ]);
 
         $block = Block::create(request(['name', 'initials', 'location']));
         LogActivity::store("Criou o bloco " . $block->id);
@@ -81,7 +85,11 @@ class BlockController extends Controller
      */
     public function update(Block $block)
     {
-        $this->validateBlock();
+        request()->validate([
+            'name' => 'required|min:2|unique,name,'.$block->id,
+            'initials' => 'required|max:12|unique,initials,'.$block->id,
+            'location' => 'required',
+        ]);
 
         $block->update(request(['name', 'initials', 'location']));
         LogActivity::store("Atualizou informações do bloco " . $block->id);
@@ -104,20 +112,5 @@ class BlockController extends Controller
 
         flash('O bloco foi removido!');
         return redirect(action('BlockController@index'));
-    }
-
-    /**
-     * Validates information for block.
-     *
-     * @param  \App\Block  $block
-     * @return \Illuminate\Http\Response
-     */
-    public function validateBlock()
-    {
-        return request()->validate([
-            'name' => 'required|min:2',
-            'initials' => 'required|max:12',
-            'location' => 'required',
-        ]);
     }
 }

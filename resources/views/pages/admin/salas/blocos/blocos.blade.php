@@ -14,7 +14,7 @@
         <table class="table dataTable">
             <thead>
                 <tr>
-                    <td>Id</td>
+                    <th>id</th>
                     <th>Nome</th>
                     <th>Abreviação</th>
                     <th>Salas</th>
