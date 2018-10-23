@@ -87,15 +87,16 @@ Route::group(array('prefix' => 'admin'), function()
     Route::patch('niveis-de-ensino/{educationLevel}', 'EducationLevelController@update')->name('educationlevels.update');
     Route::get('niveis-de-ensino/{educationLevel}/remover', 'EducationLevelController@destroy')->name('educationlevels.destroy');
 
-    Route::get('cursos', function() {
-        return view('pages.admin.educacional.cursos.cursos');
-    });
-    Route::get('cursos/adicionar', function() {
-        return view('pages.admin.educacional.cursos.adicionar-curso');
-    });
-    Route::get('cursos/ver', function() {
-        return view('pages.admin.educacional.cursos.ver-curso');
-    });
+    // Cursos
+    Route::get('cursos', 'CourseController@index')->name('courses');
+    Route::get('cursos/{course}/ver', 'CourseController@show')->name('courses.show');
+
+    Route::get('cursos/adicionar', 'CourseController@create')->name('courses.create');
+    Route::post('cursos', 'CourseController@store')->name('courses.store');
+
+    Route::get('cursos/{course}/editar', 'CourseController@edit')->name('courses.edit');
+    Route::patch('cursos/{course}', 'CourseController@update')->name('courses.update');
+    Route::get('cursos/{course}/remover', 'CourseController@destroy')->name('courses.destroy');
 
     Route::get('disciplinas', function() {
         return view('pages.admin.educacional.disciplinas.disciplinas');

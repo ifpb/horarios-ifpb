@@ -1,53 +1,51 @@
 @extends('layouts.admin')
 
 @section('content-admin')
-    <h2>Redes de Computadores</h2>
+    <h2>Curso: {{ $course->name }}</h2>
 
-    <a class="btn btn-default mb-5" href="#" onClick="createWarning('#');return false;" role="button">
-        <span class="glyphicon glyphicon-minus"></span>
+    <a class="btn btn-default mb-5" href="{{ route('courses.edit', $course->id) }}" role="button">
+        <span class="glyphicon glyphicon-edit"></span>
+        Editar Curso
+    </a>
+
+    <a class="btn btn-danger mb-5" href="#" onClick="createWarning('{{ route('courses.destroy', $course->id) }}');return false;" role="button">
+        <span class="glyphicon glyphicon-remove"></span>
         Remover Curso
     </a>
 
+    {{--@TODO: Dinamizar Unidades de Ensino e Disciplinas--}}
     <form>
         <div class="form-group">
-            <label for="">Unidade</label>
-            <select class="form-control" disabled>
-                <option value="">Design, Infraestrutura e Ambiente</option>
-                <option value="">Informação e Comunicação</option>
-                <option value="">Controle e Processos Industriais</option>
+            <label for="teaching_unit_id">Unidade de ensino</label>
+            <select name="teaching_unit_id" class="form-control" disabled>
+                <option>{{ $course->teachingUnit->name }}</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="">Nome</label>
-            <input type="text" class="form-control" disabled>
+            <label for="name">Nome</label>
+            <input type="text" id="name" name="name" class="form-control" value="{{ $course->name }}" disabled>
         </div>
         <div class="form-group">
-            <label for="">Abreviação</label>
-            <input type="text" class="form-control" disabled>
-            <span id="helpBlock" class="help-block">Máximo de 12 caracteres.</span>
+            <label for="initials">Abreviação</label>
+            <input type="text" id="initials" name="initials" class="form-control" value="{{ $course->initials }}" disabled>
         </div>
         <div class="form-group">
-            <label for="">Número de Períodos</label>
-            <input type="text" class="form-control" disabled>
+            <label for="periods">Periodos</label>
+            <input type="number" id="periods" name="periods" class="form-control" value="{{ $course->periods }}" disabled>
         </div>
         <div class="form-group">
-            <label for="">Nível</label>
-            <select class="form-control" disabled>
-                <option value="">Geral</option>
-                <option value="">Integrado</option>
-                <option value="">Mestrado</option>
-                <option value="">Subsequente</option>
-                <option value="">Superior</option>
+            <label for="teaching_level_id">Nível de ensino</label>
+            <select name="education_level_id" class="form-control" disabled>
+                <option>{{ $course->educationLevel->name }}</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="">Turno</label>
-            <select class="form-control" disabled>
-                <option value="">Matutino</option>
-                <option value="">Vespertino</option>
-                <option value="">Noturno</option>
-                <option value="">Integral</option>
-            </select>
+            <label class="flex">Turnos</label>
+            @foreach($shifts as $shift)
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox1" name="shifts[]" @if($course->shifts->contains('id', $shift->id)) checked @endif disabled> {{ $shift->name }}
+                </label>
+            @endforeach
         </div>
     </form>
 

@@ -121,7 +121,7 @@ class ClassroomController extends Controller
 
         $classroom->delete();
 
-        flash('A sala foi removido!');
+        flash('A sala foi removida!');
         return redirect(route('classrooms'));
     }
 }
