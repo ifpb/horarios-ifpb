@@ -3,62 +3,58 @@
 @section('content-admin')
     <h2>Adicionar Professor</h2>
 
-    <form>
+    @include('partials.list-errors-form')
+
+    <form method="POST" action="{{ route('professors.store') }}">
+        @csrf
         <div class="form-group">
-            <label for="">Unidade</label>
-            <select class="form-control">
-                <option value="">Design, Infraestrutura e Ambiente</option>
-                <option value="">Informação e Comunicação</option>
-                <option value="">Controle e Processos Industriais</option>
+            <label for="teaching_unit_id">Unidade de ensino</label>
+            <select name="teaching_unit_id" class="form-control" required>
+                @foreach($teachingUnits as $teachingUnit)
+                    <option value="{{ $teachingUnit->id }}" @if(old('teaching_unit_id') == $teachingUnit->id) {{ 'selected' }} @endif>{{ $teachingUnit->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
+            <label for="name">Nome</label>
+            <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" placeholder="Nome (Ex: Eduardo Costa Silva Dantas)" required minlength="2">
+        </div>
+        <div class="form-group {!! $errors->has('nickname') ? 'has-error' : '' !!}">
+            <label for="nickname">Apelido</label>
+            <input type="text" id="nickname" name="nickname" class="form-control" value="{{ old('nickname') }}" placeholder="Apelido (Ex: Edu Costa)" required maxlength="20">
+        </div>
+        <div class="form-group {!! $errors->has('email') ? 'has-error' : '' !!}">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="E-mail (Ex: educosta@ifpb.edu.br)">
+        </div>
+        <div class="form-group {!! $errors->has('phone') ? 'has-error' : '' !!}">
+            <label for="phone">Telefone</label>
+            <input type="number" id="phone" name="phone" class="form-control" value="{{ old('phone') }}" placeholder="Telefone (Ex: 83999998888)">
+            <span id="helpBlock" class="help-block">Digite o DDD sem 0 seguido do número (Ex: 83999999999)</span>
+        </div>
+        <div class="form-group">
+            <label for="employment_bond_id">Vínculo Empregatício</label>
+            <select name="employment_bond_id" class="form-control" required>
+                @foreach($employmentBonds as $employmentBond)
+                    <option value="{{ $employmentBond->id }}" @if(old('employment_bond_id') == $employmentBond->id) {{ 'selected' }} @endif>{{ $employmentBond->name }}</option>
+                @endforeach
             </select>
         </div>
         <div class="form-group">
-            <label for="">Nome</label>
-            <input type="text" class="form-control" placeholder="Nome">
-        </div>
-        <div class="form-group">
-            <label for="">Apelido</label>
-            <input type="text" class="form-control" placeholder="Apelido">
-        </div>
-        <div class="form-group">
-            <label for="">E-mail</label>
-            <input type="email" class="form-control" placeholder="E-mail">
-        </div>
-        <div class="form-group">
-            <label for="">Telefone</label>
-            <input type="text" class="form-control" placeholder="Telefone (ex: 83 999128383)">
-        </div>
-        <div class="form-group">
-            <label for="">Vínculo</label>
-            <select class="form-control">
-                <option value="">Integral (40h)</option>
-                <option value="">Parcial (20h)</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="">Regime</label>
-            <select class="form-control">
-                <option value="">Efetivo</option>
-                <option value="">Temporário</option>
+            <label for="employment_type_id">Regime Empregatício</label>
+            <select name="employment_type_id" class="form-control" required>
+                @foreach($employmentTypes as $employmentType)
+                    <option value="{{ $employmentType->id }}" @if(old('employment_type_id') == $employmentType->id) {{ 'selected' }} @endif>{{ $employmentType->name }} ({{ $employmentType->hours_week }}h/semana)</option>
+                @endforeach
             </select>
         </div>
         <div class="form-group">
             <label class="flex" for="">Disponibilidade</label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox1" value="option1" checked> Segunda
-            </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox2" value="option2" checked> Terça
-            </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox3" value="option3" checked> Quarta
-            </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox3" value="option3" checked> Quinta
-            </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckbox3" value="option3" checked> Sexta
-            </label>
+            @foreach($days as $day)
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox1" name="days[]" value="{{ $day->id }}" @if(is_array(old('days')) && in_array($day->id, old('days'))) checked @endif> {{ $day->name }}
+                </label>
+            @endforeach
         </div>
 
         <button type="submit" class="btn btn-primary mt-5">Adicionar Professor</button>

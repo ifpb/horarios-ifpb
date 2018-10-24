@@ -11,7 +11,7 @@
             <label for="teaching_unit_id">Unidade</label>
             <select name="teaching_unit_id" class="form-control">
                 @foreach($teachingUnits as $teachingUnit)
-                    <option value="{{ $teachingUnit->id }}" @if(old('teaching_unit_id') == $teachingUnit->id) {{ 'selected' }} @endif>{{ $teachingUnit->name }}</option>
+                    <option value="{{ $teachingUnit->id }}">{{ $teachingUnit->name }}</option>
                 @endforeach
             </select>
         </div>

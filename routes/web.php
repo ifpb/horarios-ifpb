@@ -143,25 +143,16 @@ Route::group(array('prefix' => 'admin'), function()
         Route::patch('regimes/{employmentType}', 'EmploymentTypeController@update')->name('employmenttypes.update');
         Route::get('regimes/{employmentType}/remover', 'EmploymentTypeController@destroy')->name('employmenttypes.destroy');
 
-//        Route::get('regimes', function() {
-//
-//        });
-//        Route::get('regimes/adicionar', function() {
-//
-//        });
-//        Route::get('regimes/ver', function() {
-//
-//        });
+        // Professores
+        Route::get('/', 'ProfessorController@index')->name('professors');
+        Route::get('{professor}/ver', 'ProfessorController@show')->name('professors.show');
 
-        Route::get('/', function() {
-            return view('pages.admin.professores.professores.professores');
-        });
-        Route::get('adicionar', function() {
-            return view('pages.admin.professores.professores.adicionar-professor');
-        });
-        Route::get('ver', function() {
-            return view('pages.admin.professores.professores.ver-professor');
-        });
+        Route::get('/adicionar', 'ProfessorController@create')->name('professors.create');
+        Route::post('/', 'ProfessorController@store')->name('professors.store');
+
+        Route::get('{professor}/editar', 'ProfessorController@edit')->name('professors.edit');
+        Route::patch('{professor}', 'ProfessorController@update')->name('professors.update');
+        Route::get('{professor}/remover', 'ProfessorController@destroy')->name('professors.destroy');
     });
 
     Route::get('usuarios', function() {
