@@ -132,15 +132,26 @@ Route::group(array('prefix' => 'admin'), function()
         Route::patch('vinculos/{employmentBond}', 'EmploymentBondController@update')->name('employmentbonds.update');
         Route::get('vinculos/{employmentBond}/remover', 'EmploymentBondController@destroy')->name('employmentbonds.destroy');
 
-        Route::get('regimes', function() {
-            return view('pages.admin.professores.regimes.tipos-de-regime');
-        });
-        Route::get('regimes/adicionar', function() {
-            return view('pages.admin.professores.regimes.adicionar-regime');
-        });
-        Route::get('regimes/ver', function() {
-            return view('pages.admin.professores.regimes.ver-regime');
-        });
+        // Regimes (Employment Types)
+        Route::get('regimes', 'EmploymentTypeController@index')->name('employmenttypes');
+        Route::get('regimes/{employmentType}/ver', 'EmploymentTypeController@show')->name('employmenttypes.show');
+
+        Route::get('regimes/adicionar', 'EmploymentTypeController@create')->name('employmenttypes.create');
+        Route::post('regimes', 'EmploymentTypeController@store')->name('employmenttypes.store');
+
+        Route::get('regimes/{employmentType}/editar', 'EmploymentTypeController@edit')->name('employmenttypes.edit');
+        Route::patch('regimes/{employmentType}', 'EmploymentTypeController@update')->name('employmenttypes.update');
+        Route::get('regimes/{employmentType}/remover', 'EmploymentTypeController@destroy')->name('employmenttypes.destroy');
+
+//        Route::get('regimes', function() {
+//
+//        });
+//        Route::get('regimes/adicionar', function() {
+//
+//        });
+//        Route::get('regimes/ver', function() {
+//
+//        });
 
         Route::get('/', function() {
             return view('pages.admin.professores.professores.professores');

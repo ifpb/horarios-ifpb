@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
 @section('content-admin')
-    <h2>Tipos de Vínculo</h2>
+    <h2>Tipos de Regime</h2>
 
     <div class="flex mb-5 justify-between">
-        <a class="btn btn-default" href="/admin/professores/vinculos/adicionar" role="button">
+        <a class="btn btn-default" href="{{ route('employmenttypes.create') }}" role="button">
             <span class="glyphicon glyphicon-plus"></span>
-            Adicionar Tipo de Vínculo
+            Adicionar Tipo de Regime
         </a>
     </div>
 
@@ -14,47 +14,33 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>id</th>
                     <th>Nome</th>
                     <th>Horas Semanais</th>
                     <th>Ação</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Integral</td>
-                    <td>40h</td>
-                    <td>
-                        <a class="btn btn-default" href="/admin/professores/vinculos/ver" role="button">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                        </a>
+                @foreach($employmentTypes as $employmentType)
+                    <tr>
+                        <td>{{ $employmentType->id }}</td>
+                        <td>{{ $employmentType->name }}</td>
+                        <td>{{ $employmentType->hours_week }}h</td>
+                        <td>
+                            <a class="btn btn-default" href="{{ route('employmenttypes.show', $employmentType->id) }}" role="button">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>
 
-                        <a class="btn btn-default" href="#" role="button">
-                            <span class="glyphicon glyphicon-edit"></span>
-                        </a>
+                            <a class="btn btn-default" href="{{ route('employmenttypes.edit', $employmentType->id) }}" role="button">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
 
-                        <a class="btn btn-default" href="#" onClick="createWarning('#');return false;" role="button">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </a>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>Parcial</td>
-                    <td>20h</td>
-                    <td>
-                        <a class="btn btn-default" href="/admin/professores/vinculos/ver" role="button">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                        </a>
-
-                        <a class="btn btn-default" href="#" role="button">
-                            <span class="glyphicon glyphicon-edit"></span>
-                        </a>
-
-                        <a class="btn btn-default" href="#" onClick="createWarning('#');return false;" role="button">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </a>
-                    </td>
-                </tr>
+                            <a class="btn btn-default" href="#" onClick="createWarning('{{ route('employmenttypes.destroy', $employmentType->id) }}');return false;" role="button">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
