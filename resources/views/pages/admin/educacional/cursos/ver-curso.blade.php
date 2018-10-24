@@ -13,7 +13,7 @@
         Remover Curso
     </a>
 
-    {{--@TODO: Dinamizar Unidades de Ensino e Disciplinas--}}
+    {{-- TODO: Dinamizar Unidades de Ensino e Disciplinas--}}
     <form>
         <div class="form-group">
             <label for="teaching_unit_id">Unidade de ensino</label>

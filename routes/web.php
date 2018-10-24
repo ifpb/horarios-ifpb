@@ -98,15 +98,16 @@ Route::group(array('prefix' => 'admin'), function()
     Route::patch('cursos/{course}', 'CourseController@update')->name('courses.update');
     Route::get('cursos/{course}/remover', 'CourseController@destroy')->name('courses.destroy');
 
-    Route::get('disciplinas', function() {
-        return view('pages.admin.educacional.disciplinas.disciplinas');
-    });
-    Route::get('disciplinas/adicionar', function() {
-        return view('pages.admin.educacional.disciplinas.adicionar-disciplina');
-    });
-    Route::get('disciplinas/ver', function() {
-        return view('pages.admin.educacional.disciplinas.ver-disciplina');
-    });
+    // Disciplinas
+    Route::get('disciplinas', 'SubjectController@index')->name('subjects');
+    Route::get('disciplinas/{subject}/ver', 'SubjectController@show')->name('subjects.show');
+
+    Route::get('disciplinas/adicionar', 'SubjectController@create')->name('subjects.create');
+    Route::post('disciplinas', 'SubjectController@store')->name('subjects.store');
+
+    Route::get('disciplinas/{subject}/editar', 'SubjectController@edit')->name('subjects.edit');
+    Route::patch('disciplinas/{subject}', 'SubjectController@update')->name('subjects.update');
+    Route::get('disciplinas/{subject}/remover', 'SubjectController@destroy')->name('subjects.destroy');
 
     Route::get('turmas', function() {
         return view('pages.admin.educacional.turmas.turmas');

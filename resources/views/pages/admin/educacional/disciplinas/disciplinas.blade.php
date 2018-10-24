@@ -4,7 +4,7 @@
     <h2>Disciplinas</h2>
 
     <div class="flex mb-5 justify-between">
-        <a class="btn btn-default" href="/admin/disciplinas/adicionar" role="button">
+        <a class="btn btn-default" href="{{ route('subjects.create') }}" role="button">
             <span class="glyphicon glyphicon-plus"></span>
             Adicionar Disciplina
         </a>
@@ -14,7 +14,9 @@
         <table class="table dataTable">
             <thead>
                 <tr>
+                    <th>id</th>
                     <th>Nome</th>
+                    <th>Abreviação</th>
                     <th>Curso</th>
                     <th>Periodo</th>
                     <th>CH</th>
@@ -22,44 +24,29 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Administração de Sistemas Abertos</td>
-                    <td>CST REDES</td>
-                    <td>3</td>
-                    <td>87</td>
-                    <td>
-                        <a class="btn btn-default" href="/admin/disciplinas/ver" role="button">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                        </a>
+                @foreach($subjects as $subject)
+                    <tr>
+                        <td>{{ $subject->id }}</td>
+                        <td>{{ $subject->name }}</td>
+                        <td>{{ $subject->initials }}</td>
+                        <td>{{ $subject->course->name }}</td>
+                        <td>{{ $subject->period }}</td>
+                        <td>{{ $subject->workload }}h</td>
+                        <td>
+                            <a class="btn btn-default" href="{{ route('subjects.show', $subject->id) }}" role="button">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>
 
-                        <a class="btn btn-default" href="#" role="button">
-                            <span class="glyphicon glyphicon-edit"></span>
-                        </a>
+                            <a class="btn btn-default" href="{{ route('subjects.edit', $subject->id) }}" role="button">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
 
-                        <a class="btn btn-default" href="#" onClick="createWarning('#');return false;" role="button">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Desenvolvimento Web</td>
-                    <td>CST REDES</td>
-                    <td>4</td>
-                    <td>87</td>
-                    <td>
-                        <a class="btn btn-default" href="/admin/disciplinas/ver" role="button">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                        </a>
-
-                        <a class="btn btn-default" href="#" role="button">
-                            <span class="glyphicon glyphicon-edit"></span>
-                        </a>
-
-                        <a class="btn btn-default" href="#" onClick="createWarning('#');return false;" role="button">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </a>
-                    </td>
-                </tr>
+                            <a class="btn btn-default" href="#" onClick="createWarning('{{ route('subjects.destroy', $subject->id) }}');return false;" role="button">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

@@ -57,7 +57,7 @@ class CourseController extends Controller
         $course = Course::create(request(['teaching_unit_id', 'name', 'initials', 'periods', 'education_level_id']));
         $course->shifts()->sync(request('shifts'));
 
-         LogActivity::store("Adicionou o curso " . $course->id . "(". $course->name .")");
+        LogActivity::store("Adicionou o curso " . $course->id . "(". $course->name .")");
 
         return redirect(route('courses.show', $course));
     }
