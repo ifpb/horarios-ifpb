@@ -1,17 +1,21 @@
 @extends('layouts.admin')
 
 @section('content-admin')
-    <h2>Regime: Efetivo</h2>
+    <h2>Regime: Integral</h2>
 
     <a class="btn btn-default mb-5" href="#" onClick="createWarning('#');return false;" role="button">
         <span class="glyphicon glyphicon-minus"></span>
-        Remover Tipo de Regime
+        Remover Tipo de Vínculo
     </a>
 
     <form>
         <div class="form-group">
             <label for="">Nome</label>
-            <input type="text" class="form-control" disabled>
+            <input type="text" class="form-control" placeholder="Nome (ex: Integral)" disabled>
+        </div>
+        <div class="form-group">
+            <label for="">Horas Semanais</label>
+            <input type="text" class="form-control" placeholder="Número de Horas"disabled>
         </div>
     </form>
 

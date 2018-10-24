@@ -1,24 +1,26 @@
 @extends('layouts.admin')
 
 @section('content-admin')
-    <h2>Vínculo: Integral</h2>
+    <h2>Vinculo: {{ $employmentBond->name }}</h2>
 
-    <a class="btn btn-default mb-5" href="#" onClick="createWarning('#');return false;" role="button">
-        <span class="glyphicon glyphicon-minus"></span>
-        Remover Tipo de Vínculo
+    <a class="btn btn-default mb-5" href="{{ route('employmentbonds.edit', $employmentBond->id) }}" role="button">
+        <span class="glyphicon glyphicon-edit"></span>
+        Editar Vínculo
+    </a>
+
+    <a class="btn btn-danger mb-5" href="#" onClick="createWarning('{{ route('employmentbonds.destroy', $employmentBond->id) }}');return false;" role="button">
+        <span class="glyphicon glyphicon-remove"></span>
+        Remover Vínculo
     </a>
 
     <form>
         <div class="form-group">
-            <label for="">Nome</label>
-            <input type="text" class="form-control" placeholder="Nome (ex: Integral)" disabled>
-        </div>
-        <div class="form-group">
-            <label for="">Horas Semanais</label>
-            <input type="text" class="form-control" placeholder="Número de Horas"disabled>
+            <label for="name">Nome</label>
+            <input type="text" id="name" class="form-control" value="{{ $employmentBond->name }}" disabled>
         </div>
     </form>
 
+    {{--TODO: Dinamizar Professores nos Vínculos--}}
     <hr />
     <h2 class="mb-3">Professores</h2>
 

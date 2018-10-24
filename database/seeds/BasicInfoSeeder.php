@@ -164,5 +164,21 @@ class BasicInfoSeeder extends Seeder
             [ 'name' => 'Subsequente' ],
             [ 'name' => 'Superior' ]
         ]);
+
+        DB::table('employment_bonds')->insert([
+            [ 'name' => 'Efetivo' ],
+            [ 'name' => 'Temporário' ]
+        ]);
+
+        DB::table('employment_types')->insert([
+            [
+                'name' => 'Integral',
+                'hours_week' => '40'
+            ],
+            [
+                'name' => 'Parcial',
+                'hours_week' => '20'
+            ]
+        ]);
     }
 }

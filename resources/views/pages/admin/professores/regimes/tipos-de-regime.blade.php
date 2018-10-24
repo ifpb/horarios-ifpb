@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 
 @section('content-admin')
-    <h2>Tipos de Regime</h2>
+    <h2>Tipos de Vínculo</h2>
 
     <div class="flex mb-5 justify-between">
-        <a class="btn btn-default" href="/admin/professores/regimes/adicionar" role="button">
+        <a class="btn btn-default" href="/admin/professores/vinculos/adicionar" role="button">
             <span class="glyphicon glyphicon-plus"></span>
-            Adicionar Tipo de Regime
+            Adicionar Tipo de Vínculo
         </a>
     </div>
 
@@ -15,14 +15,16 @@
             <thead>
                 <tr>
                     <th>Nome</th>
+                    <th>Horas Semanais</th>
                     <th>Ação</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Efetivo</td>
+                    <td>Integral</td>
+                    <td>40h</td>
                     <td>
-                        <a class="btn btn-default" href="/admin/professores/regimes/ver" role="button">
+                        <a class="btn btn-default" href="/admin/professores/vinculos/ver" role="button">
                             <span class="glyphicon glyphicon-eye-open"></span>
                         </a>
 
@@ -37,9 +39,10 @@
                 </tr>
 
                 <tr>
-                    <td>Temporário</td>
+                    <td>Parcial</td>
+                    <td>20h</td>
                     <td>
-                        <a class="btn btn-default" href="/admin/professores/regimes/ver" role="button">
+                        <a class="btn btn-default" href="/admin/professores/vinculos/ver" role="button">
                             <span class="glyphicon glyphicon-eye-open"></span>
                         </a>
 

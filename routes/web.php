@@ -119,34 +119,38 @@ Route::group(array('prefix' => 'admin'), function()
         return view('pages.admin.educacional.turmas.ver-turma');
     });
 
-    Route::get('professores/vinculos', function() {
-        return view('pages.admin.professores.vinculos.tipos-de-vinculo');
-    });
-    Route::get('professores/vinculos/adicionar', function() {
-        return view('pages.admin.professores.vinculos.adicionar-vinculo');
-    });
-    Route::get('professores/vinculos/ver', function() {
-        return view('pages.admin.professores.vinculos.ver-vinculo');
-    });
+    Route::group(array('prefix' => 'professores'), function()
+    {
+        // Vínculos (Employment Bond)
+        Route::get('vinculos', 'EmploymentBondController@index')->name('employmentbonds');
+        Route::get('vinculos/{employmentBond}/ver', 'EmploymentBondController@show')->name('employmentbonds.show');
 
-    Route::get('professores/regimes', function() {
-        return view('pages.admin.professores.regimes.tipos-de-regime');
-    });
-    Route::get('professores/regimes/adicionar', function() {
-        return view('pages.admin.professores.regimes.adicionar-regime');
-    });
-    Route::get('professores/regimes/ver', function() {
-        return view('pages.admin.professores.regimes.ver-regime');
-    });
+        Route::get('vinculos/adicionar', 'EmploymentBondController@create')->name('employmentbonds.create');
+        Route::post('vinculos', 'EmploymentBondController@store')->name('employmentbonds.store');
 
-    Route::get('professores', function() {
-        return view('pages.admin.professores.professores.professores');
-    });
-    Route::get('professores/adicionar', function() {
-        return view('pages.admin.professores.professores.adicionar-professor');
-    });
-    Route::get('professores/ver', function() {
-        return view('pages.admin.professores.professores.ver-professor');
+        Route::get('vinculos/{employmentBond}/editar', 'EmploymentBondController@edit')->name('employmentbonds.edit');
+        Route::patch('vinculos/{employmentBond}', 'EmploymentBondController@update')->name('employmentbonds.update');
+        Route::get('vinculos/{employmentBond}/remover', 'EmploymentBondController@destroy')->name('employmentbonds.destroy');
+
+        Route::get('regimes', function() {
+            return view('pages.admin.professores.regimes.tipos-de-regime');
+        });
+        Route::get('regimes/adicionar', function() {
+            return view('pages.admin.professores.regimes.adicionar-regime');
+        });
+        Route::get('regimes/ver', function() {
+            return view('pages.admin.professores.regimes.ver-regime');
+        });
+
+        Route::get('/', function() {
+            return view('pages.admin.professores.professores.professores');
+        });
+        Route::get('adicionar', function() {
+            return view('pages.admin.professores.professores.adicionar-professor');
+        });
+        Route::get('ver', function() {
+            return view('pages.admin.professores.professores.ver-professor');
+        });
     });
 
     Route::get('usuarios', function() {
