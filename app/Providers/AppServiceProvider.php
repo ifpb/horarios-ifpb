@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Validator;
+use App\Validator\CustomValidation;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+
+        Validator::extend('unique_teaching_class', 'App\Validator\CustomValidation@uniqueTeachingClass');
     }
 
     /**

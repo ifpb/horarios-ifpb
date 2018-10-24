@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Carbon\Carbon;
 
 class BasicInfoSeeder extends Seeder
 {
@@ -178,6 +177,21 @@ class BasicInfoSeeder extends Seeder
             [
                 'name' => 'Parcial',
                 'hours_week' => '20'
+            ]
+        ]);
+
+        DB::table('teaching_class_types')->insert([
+            [
+                'name' => 'Turma Única',
+                'initials' => 'U'
+            ],
+            [
+                'name' => 'Turma A',
+                'initials' => 'A'
+            ],
+            [
+                'name' => 'Turma B',
+                'initials' => 'B'
             ]
         ]);
     }

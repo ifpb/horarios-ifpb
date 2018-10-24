@@ -19,7 +19,7 @@
     <li><a href="/admin/niveis-de-ensino">Níveis de Ensino</a></li>
     <li><a href="/admin/cursos">Cursos</a></li>
     <li><a href="/admin/disciplinas">Disciplinas</a></li>
-    <li><a href="/admin/turmas">Gerenciar Turmas</a></li>
+    <li><a href="/admin/turmas">Turmas</a></li>
 </ul>
 
 <p class="menu-title">Professores</p>

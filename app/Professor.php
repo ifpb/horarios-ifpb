@@ -27,4 +27,9 @@ class Professor extends Model
     {
         return $this->belongsTo(EmploymentType::class);
     }
+
+    public function teaching_classes()
+    {
+        return $this->hasMany(TeachingClass::class);
+    }
 }

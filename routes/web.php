@@ -109,15 +109,16 @@ Route::group(array('prefix' => 'admin'), function()
     Route::patch('disciplinas/{subject}', 'SubjectController@update')->name('subjects.update');
     Route::get('disciplinas/{subject}/remover', 'SubjectController@destroy')->name('subjects.destroy');
 
-    Route::get('turmas', function() {
-        return view('pages.admin.educacional.turmas.turmas');
-    });
-    Route::get('turmas/adicionar', function() {
-        return view('pages.admin.educacional.turmas.adicionar-turma');
-    });
-    Route::get('turmas/ver', function() {
-        return view('pages.admin.educacional.turmas.ver-turma');
-    });
+    // Disciplinas
+    Route::get('turmas', 'TeachingClassController@index')->name('teachingclasses');
+    Route::get('turmas/{teachingClass}/ver', 'TeachingClassController@show')->name('teachingclasses.show');
+
+    Route::get('turmas/adicionar', 'TeachingClassController@create')->name('teachingclasses.create');
+    Route::post('turmas', 'TeachingClassController@store')->name('teachingclasses.store');
+
+    Route::get('turmas/{teachingClass}/editar', 'TeachingClassController@edit')->name('teachingclasses.edit');
+    Route::patch('turmas/{teachingClass}', 'TeachingClassController@update')->name('teachingclasses.update');
+    Route::get('turmas/{teachingClass}/remover', 'TeachingClassController@destroy')->name('teachingclasses.destroy');
 
     Route::group(array('prefix' => 'professores'), function()
     {

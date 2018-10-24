@@ -1,38 +1,46 @@
 @extends('layouts.admin')
 
 @section('content-admin')
-    <h2>Redes de Computadores - José Quaresma Filho</h2>
+    <h2>Turma: {{ $teachingClass->subject->name }} - {{ $teachingClass->professor->nickname }}</h2>
 
-    <a class="btn btn-default mb-5" href="#" onClick="createWarning('#');return false;" role="button">
-        <span class="glyphicon glyphicon-minus"></span>
+    <a class="btn btn-default mb-5" href="{{ route('teachingclasses.edit', $teachingClass->id) }}" role="button">
+        <span class="glyphicon glyphicon-edit"></span>
+        Editar Turma
+    </a>
+
+    <a class="btn btn-danger mb-5" href="#" onClick="createWarning('{{ route('teachingclasses.destroy', $teachingClass->id) }}');return false;" role="button">
+        <span class="glyphicon glyphicon-remove"></span>
         Remover Turma
+    </a>
+
+    {{--TODO: Mudar este link para a reserva de sala--}}
+    <a class="btn btn-default mb-5" href="{{ route('teachingclasses.edit', $teachingClass->id) }}" role="button">
+        <span class="glyphicon glyphicon-plus"></span>
+        Reservar uma sala
     </a>
 
     <form>
         <div class="form-group">
             <label for="">Disciplina</label>
             <select class="form-control" disabled>
-                <option value="">Redes de Computadores</option>
-                <option value="">Design de Interiores</option>
+                <option value="">{{ $teachingClass->subject->name }}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="">Professor</label>
             <select class="form-control" disabled>
-                <option value="">José Quaresma Filho</option>
-                <option value="">Luiz Carlos Chaves</option>
+                <option value="">{{ $teachingClass->professor->nickname }}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="">Identificação</label>
             <select class="form-control" disabled>
-                <option value="">U</option>
-                <option value="">A</option>
-                <option value="">B</option>
+                <option value="">{{ $teachingClass->type->name }}</option>
             </select>
         </div>
     </form>
 
+    {{--TODO: Dinamizar Salas Reservadas--}}
     <hr>
     <h2 class="mb-3">Salas Reservadas</h2>
 

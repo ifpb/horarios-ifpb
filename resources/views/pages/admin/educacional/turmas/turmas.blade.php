@@ -4,7 +4,7 @@
     <h2>Turmas</h2>
 
     <div class="flex mb-5 justify-between">
-        <a class="btn btn-default" href="/admin/turmas/adicionar" role="button">
+        <a class="btn btn-default" href="{{ route('teachingclasses.create') }}" role="button">
             <span class="glyphicon glyphicon-plus"></span>
             Adicionar Turma
         </a>
@@ -14,6 +14,7 @@
         <table class="table dataTable">
             <thead>
                 <tr>
+                    <th>id</th>
                     <th>Disciplina</th>
                     <th>Professor</th>
                     <th>Ident.</th>
@@ -22,44 +23,29 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Administração de Sistemas Abertos</td>
-                    <td>José Quaresma Filho</td>
-                    <td>U</td>
-                    <td>Não</td>
-                    <td>
-                        <a class="btn btn-default" href="/admin/turmas/ver" role="button">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                        </a>
+                @foreach($teachingClasses as $teachingClass)
+                    <tr>
+                        <td>{{ $teachingClass->id }}</td>
+                        <td>{{ $teachingClass->subject->name }}</td>
+                        <td>{{ $teachingClass->professor->name }}</td>
+                        <td>{{ $teachingClass->type->initials }}</td>
+                        {{--TODO: Dinamizar se há salas reservadas--}}
+                        <td>Não</td>
+                        <td>
+                            <a class="btn btn-default" href="{{ route('teachingclasses.show', $teachingClass->id) }}" role="button">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                            </a>
 
-                        <a class="btn btn-default" href="#" role="button">
-                            <span class="glyphicon glyphicon-edit"></span>
-                        </a>
+                            <a class="btn btn-default" href="{{ route('teachingclasses.edit', $teachingClass->id) }}" role="button">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </a>
 
-                        <a class="btn btn-default" href="#" onClick="createWarning('#');return false;" role="button">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Desenvolvimento Web</td>
-                    <td>José Quaresma Filho</td>
-                    <td>U</td>
-                    <td>Sim</td>
-                    <td>
-                        <a class="btn btn-default" href="/admin/turmas/ver" role="button">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                        </a>
-
-                        <a class="btn btn-default" href="#" role="button">
-                            <span class="glyphicon glyphicon-edit"></span>
-                        </a>
-
-                        <a class="btn btn-default" href="#" onClick="createWarning('#');return false;" role="button">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </a>
-                    </td>
-                </tr>
+                            <a class="btn btn-default" href="#" onClick="createWarning('{{ route('teachingclasses.destroy', $teachingClass->id) }}');return false;" role="button">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
