@@ -54,16 +54,16 @@ Route::group(array('prefix' => 'admin'), function()
     Route::patch('salas/{classroom}', 'ClassroomController@update')->name('classroom.update');
     Route::get('salas/{classroom}/remover', 'ClassroomController@destroy')->name('classroom.destroy');
 
-    Route::get('salas/reservas', function() {
-        return view('pages.admin.salas.reservas.reservas');
-    });
-    Route::get('salas/reservas/adicionar', function() {
-        return view('pages.admin.salas.reservas.adicionar-reserva');
-    });
-    Route::get('salas/reservas/ver', function() { //Lembrar que vai ser o ID
-        return view('pages.admin.salas.reservas.ver-reserva');
-    });
+    // RESERVA DE SALAS
+    Route::get('salas/reservas', 'ClassroomReservationController@index')->name('classroomsreservations');
+    Route::get('salas/reservas/{classroomReservation}/ver', 'ClassroomReservationController@show')->name('classroomreservations.show');
 
+    Route::get('salas/reservas/adicionar', 'ClassroomReservationController@create')->name('classroomreservations.create');
+    Route::post('salas/reservas', 'ClassroomReservationController@store')->name('classroomreservations.store');
+
+    Route::get('salas/reservas/{classroomReservation}/editar', 'ClassroomReservationController@edit')->name('classroomreservations.edit');
+    Route::patch('salas/reservas/{classroomReservation}', 'ClassroomReservationController@update')->name('classroomreservations.update');
+    Route::get('salas/reservas/{classroomReservation}/remover', 'ClassroomReservationController@destroy')->name('classroomreservetions.destroy');
 
     // UNIDADES DE ENSINO
     Route::get('unidades-de-ensino', 'TeachingUnitController@index')->name('teachingunits');

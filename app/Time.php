@@ -10,4 +10,17 @@ class Time extends Model
     {
         return $this->belongsTo(Shift::class);
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(ClassroomReservation::class, 'time_id');
+    }
+
+    public function getStartsAttribute($value) {
+        return \Carbon\Carbon::parse($value)->format('H:i');
+    }
+
+    public function getEndsAttribute($value) {
+        return \Carbon\Carbon::parse($value)->format('H:i');
+    }
 }

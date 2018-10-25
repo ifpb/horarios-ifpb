@@ -42,8 +42,8 @@ class BlockController extends Controller
     public function store()
     {
         request()->validate([
-            'name' => 'required|min:2|unique',
-            'initials' => 'required|max:12|unique',
+            'name' => 'required|min:2|unique:blocks',
+            'initials' => 'required|max:12|unique:blocks',
             'location' => 'required',
         ]);
 
@@ -86,8 +86,8 @@ class BlockController extends Controller
     public function update(Block $block)
     {
         request()->validate([
-            'name' => 'required|min:2|unique,name,'.$block->id,
-            'initials' => 'required|max:12|unique,initials,'.$block->id,
+            'name' => 'required|min:2|unique:name,'.$block->id,
+            'initials' => 'required|max:12|unique:initials,'.$block->id,
             'location' => 'required',
         ]);
 

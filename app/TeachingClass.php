@@ -22,4 +22,9 @@ class TeachingClass extends Model
     {
         return $this->belongsTo(TeachingClassType::class, 'teaching_class_type_id');
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(ClassroomReservation::class, 'teaching_class_id');
+    }
 }

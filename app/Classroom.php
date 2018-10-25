@@ -17,4 +17,9 @@ class Classroom extends Model
     {
         return $this->belongsTo(ClassroomType::class, 'classroom_type_id');
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(ClassroomReservation::class, 'classroom_id');
+    }
 }

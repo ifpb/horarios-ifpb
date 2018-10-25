@@ -10,4 +10,9 @@ class Day extends Model
     {
         return $this->belongsToMany(Professor::class);
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(ClassroomReservation::class, 'day_id');
+    }
 }

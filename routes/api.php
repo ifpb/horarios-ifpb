@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +11,16 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(array('prefix' => 'tabelas'), function()
+{
+    Route::get('reservas-da-sala/{classroom}', 'ApiViewController@getTableClassroomReservations')->name('api.tabelas.reservas-da-sala');
 });
+
+Route::group(array('prefix' => 'info'), function()
+{
+    Route::get('salas-do-bloco/{block}', 'ApiController@getBlockClassrooms')->name('api.infos.salas-do-bloco');
+});
+
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});

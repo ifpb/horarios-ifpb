@@ -33,6 +33,6 @@ class CreateDayProfessorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('days_professors');
+        Schema::dropIfExists('day_professor');
     }
 }
