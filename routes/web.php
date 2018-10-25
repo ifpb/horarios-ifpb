@@ -166,9 +166,8 @@ Route::group(array('prefix' => 'admin'), function()
         return view('pages.admin.usuarios.ver-usuario');
     });
 
-    Route::get('logs', function() {
-        return view('pages.admin.sistema.logs.logs');
-    });
+    Route::get('logs', 'LogController@index');
+
     Route::get('backups', function() {
         return view('pages.admin.sistema.backups.backups');
     });

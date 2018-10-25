@@ -6,26 +6,22 @@
     <div class="table-responsive">
         <table class="table dataTable">
             <thead>
-            <tr>
-                <th>Id</th>
-                <th>Usuário</th>
-                <th>Ação</th>
-                <th>Data e Hora</th>
-            </tr>
+                <tr>
+                    <th>Id</th>
+                    <th>Usuário</th>
+                    <th>Ação</th>
+                    <th>Data e Hora</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>Luiz Carlos</td>
-                <td>Removeu o curso: Redes de Computadores</td>
-                <td>Ontem às 19:40</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Luiz Carlos</td>
-                <td>Adicionou o curso: Redes de Computadores</td>
-                <td>Hoje às 13:22</td>
-            </tr>
+                @foreach($logs as $log)
+                    <tr>
+                        <td>{{ $log->id }}</td>
+                        <td>{{ $log->user->name }}</td>
+                        <td>{{ $log->action }}</td>
+                        <td>{{ $log->created_at }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
