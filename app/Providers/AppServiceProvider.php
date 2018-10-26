@@ -18,6 +18,8 @@ class AppServiceProvider extends ServiceProvider
         //
 
         Validator::extend('unique_teaching_class', 'App\Validator\CustomValidation@uniqueTeachingClass');
+        Validator::extend('unique_time_hour_class', 'App\Validator\CustomValidation@uniqueTimeHourClass');
+        Validator::extend('professor_cant_be_busy', 'App\Validator\CustomValidation@professorCantBeBusy');
     }
 
     /**

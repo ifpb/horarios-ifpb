@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classroom;
+use App\TeachingClass;
 use App\Time;
 use App\Day;
 
@@ -21,6 +22,21 @@ class ApiViewController extends Controller
         $dayTimeReservations = $this->getDayTimeReservationCollection($times, $days, $classroom);
 
         return view('api.tabelas.reservas-da-sala', compact('classroom', 'times', 'days', 'dayTimeReservations'));
+    }
+
+    public function getTableReserveClassroom(Classroom $classroom, TeachingClass $teachingClass)
+    {
+        $classroom->load('reservations.classroom',
+            'reservations.teachingClass.professor',
+            'reservations.teachingClass.subject',
+            'reservations.teachingClass.type');
+
+        $times = $teachingClass->subject->course->shifts->pluck('times')->collapse()->sortBy('id');
+        $days = Day::orderBy('id', 'asc')->get();
+
+        $dayTimeReservations = $this->getDayTimeReservationCollection($times, $days, $classroom, $teachingClass);
+
+        return view('api.tabelas.reserva-de-sala', compact('classroom', 'times', 'days', 'dayTimeReservations'));
     }
 
     public function getDayTimeReservationCollection($times, $days, Classroom $classroom)

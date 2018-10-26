@@ -3,284 +3,89 @@
 @section('content-admin')
     <h2>Reservar Sala</h2>
 
-    <form>
-        <div class="form-group">
-            <label for="">Turma</label>
-            <select class="form-control">
-                <option value="">Adiminstração de Sistemas Abertos - Elionildo</option>
-                <option value="">Redes Sem Fio - Zé Filho</option>
+    @include('partials.list-errors-form')
+
+    <form method="POST" action="{{ route('classroomreservations.store') }}">
+        @csrf
+
+        <div class="form-group {!! $errors->has('teaching_class_id') ? 'has-error' : '' !!}">
+            <label for="teachingclasses">Turma:</label>
+            <select id="teachingclasses" name="teaching_class_id" class="form-control">
+                @foreach($teachingClasses as $teachingClass)
+                    <option value="{{ $teachingClass->id }}">{{ $teachingClass->subject->name . ' - ' . $teachingClass->professor->nickname }}</option>
+                @endforeach
             </select>
             <a href="/admin/turmas/ver" class="btn btn-default mt-3" target="_blank">Ver detalhes desta turma</a>
         </div>
-        <div class="form-group">
-            <label for="">Sala:</label>
-            <select class="form-control">
-                <option value="">Sala 1</option>
-                <option value="">Sala 2</option>
-                <option value="">Sala 3</option>
-                <option value="">Sala 4</option>
-                <option value="">Sala 5</option>
-                <option value="">Sala 6</option>
-                <option value="">Lab 04</option>
-                <option value="">Lab 06</option>
-                <option value="">Lab 08</option>
+
+        <div class="form-group {!! $errors->has('block_id') ? 'has-error' : '' !!}">
+            <label for="blocks">Selecione um bloco:</label>
+            <select id="blocks" name="block_id" class="form-control">
+                @foreach($blocks as $block)
+                    <option value="{{ $block->id }}">{{ $block->name }}</option>
+                @endforeach
             </select>
         </div>
 
-        <div class="sala reserva">
-            <h2>Sala 1</h2>
-            <div class="schedule-scroller">
-                <table class="schedule">
-                    <thead>
-                    <tr>
-                        <th>Horário</th>
-                        <th>Segunda</th>
-                        <th>Terça</th>
-                        <th>Quarta</th>
-                        <th>Quinta</th>
-                        <th>Sexta</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <div class="flex flex-col leading-normal">
-                                <span class="font-bold">M1</span>
-                                <span class="text-sm">07:00 - 07:50</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex flex-col leading-normal">
-                                <span class="font-bold">PORT INSTR</span>
-                                <span class="text-sm">JAEL - U</span>
-                                <span class="text-sm text-red-dark"><a href="#" target="_blank">Turma 1135</a></span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                    </tr>
+        <div class="form-group {!! $errors->has('classroom_id') ? 'has-error' : '' !!}">
+            <label for="">Selecione uma sala para visualizar horário:</label>
+            <select id="classrooms" name="classroom_id" class="form-control">
+                @foreach($blocks[0]->classrooms as $classroom)
+                    <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                @endforeach
+            </select>
+        </div>
 
-                    <tr>
-                        <td>
-                            <div class="flex flex-col leading-normal">
-                                <span class="font-bold">M2</span>
-                                <span class="text-sm">07:00 - 07:50</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex flex-col leading-normal">
-                                <span class="font-bold">PORT INSTR</span>
-                                <span class="text-sm">JAEL - U</span>
-                                <span class="text-sm text-red-dark"><a href="#" target="_blank">Turma 1135</a></span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                    </tr>
+        <div class="tables">
 
-                    <tr>
-                        <td>
-                            <div class="flex flex-col leading-normal">
-                                <span class="font-bold">M3</span>
-                                <span class="text-sm">07:00 - 07:50</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex flex-col leading-normal">
-                                <span class="font-bold">PORT INSTR</span>
-                                <span class="text-sm">JAEL - U</span>
-                                <span class="text-sm text-red-dark"><a href="#" target="_blank">Turma 1135</a></span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <div class="flex flex-col leading-normal">
-                                <span class="font-bold">M4</span>
-                                <span class="text-sm">07:00 - 07:50</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="flex flex-col leading-normal">
-                                <span class="font-bold">M5</span>
-                                <span class="text-sm">07:00 - 07:50</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="flex flex-col leading-normal">
-                                <span class="font-bold">M6</span>
-                                <span class="text-sm">07:00 - 07:50</span>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="flex justify-center">
-                                <input type="checkbox" id="m1-seg" value="m1-seg">
-                                <label for="m1-seg"></label>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
 
         <button type="submit" class="btn btn-primary mt-5">Adicionar Reserva</button>
     </form>
+@endsection
+
+@section('custom-js')
+    {{--TODO: Colocar isto num arquivo JS--}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            let classroom = $('#classrooms')
+            let blocks = $('#blocks')
+            let teachingClass = $('#teachingclasses')
+
+            loadReservationTable(classroom.val(), teachingClass.val())
+
+            classroom.on('change', function() {
+                loadReservationTable(classroom.val(), teachingClass.val())
+            })
+
+            blocks.on('change', function() {
+                loadBlockClassrooms(blocks.val())
+            })
+
+            teachingClass.on('change', function() {
+                loadReservationTable(classroom.val(), teachingClass.val())
+            });
+        })
+
+        function loadReservationTable(classroom, teachingclass, div = '.tables') {
+            div = $(div)
+            div.hide()
+            $.get(`/api/tabelas/reserva-de-sala/${classroom}/${teachingclass}`, data => {
+                div.html(data)
+                div.show()
+            })
+        }
+
+        function loadBlockClassrooms(block, select = '#classrooms') {
+            select = $(select)
+            select.html('')
+            $.get('/api/info/salas-do-bloco/' + block, salas => {
+                $.each(salas, (i, sala) => {
+                    select.append(`<option value=${sala.id}>${sala.name}</option>`)
+                })
+                select.trigger('change');
+            })
+
+        }
+    </script>
 @endsection

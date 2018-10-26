@@ -36,10 +36,13 @@
 @endsection
 
 @section('custom-js')
+    {{--TODO: Colocar isto num arquivo JS--}}
     <script type="text/javascript">
         $(document).ready(function() {
             let classroom = $('#classrooms')
             let blocks = $('#blocks')
+
+            loadReservationTable(classroom.val())
 
             classroom.on('change', function() {
                 loadReservationTable(classroom.val())
@@ -48,8 +51,6 @@
             blocks.on('change', function() {
                 loadBlockClassrooms(blocks.val())
             })
-
-            loadReservationTable(classroom.val())
         })
 
         function loadReservationTable(classroom, div = '.tables') {

@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Block;
-use App\Time;
-use App\Day;
-use App\Classroom;
+use App\TeachingClass;
 use App\ClassroomRerservation;
-use Illuminate\Http\Request;
 
 class ClassroomReservationController extends Controller
 {
@@ -18,32 +15,8 @@ class ClassroomReservationController extends Controller
      */
     public function index()
     {
-        $blocks = Block::with('classrooms.reservations.classroom',
-            'classrooms.reservations.teachingClass.professor',
-            'classrooms.reservations.teachingClass.subject',
-            'classrooms.reservations.teachingClass.type')->get();
-
-        $firstClassroom = $blocks[0]->classrooms[0];
-
-        $times = Time::orderBy('id', 'asc')->get();
-        $days = Day::orderBy('id', 'asc')->get();
-
-        $dayTimeReservations = $this->getDayTimeReservationCollection($times, $days, $firstClassroom);
-
-        return view('pages.admin.salas.reservas.reservas', compact('firstClassroom', 'blocks', 'times', 'days', 'dayTimeReservations'));
-    }
-
-    public function getDayTimeReservationCollection($times, $days, Classroom $classroom)
-    {
-        foreach($times as $time) {
-            $timeReservations[$time->id] = $classroom->reservations->where('time_id', $time->id);
-
-            foreach($days as $day) {
-                $dayTimeReservations[$time->id][$day->id] = $timeReservations[$time->id]->where('day_id', $day->id);
-            }
-        }
-
-        return $dayTimeReservations;
+        $blocks = Block::with('classrooms')->get();
+        return view('pages.admin.salas.reservas.reservas', compact('blocks'));
     }
 
     /**
@@ -53,7 +26,10 @@ class ClassroomReservationController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.salas.reservas.adicionar-reserva');
+        $teachingClasses = TeachingClass::with('subject', 'professor')->orderBy('id', 'desc')->get();
+        $blocks = Block::with('classrooms')->get();
+
+        return view('pages.admin.salas.reservas.adicionar-reserva', compact('teachingClasses', 'blocks'));
     }
 
     /**
@@ -62,9 +38,16 @@ class ClassroomReservationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        request()->validate([
+            'teaching_class_id' => 'required|exists:teaching_classes,id',
+            'classroom_id' => 'required|exists:classrooms,id',
+            'reserveClass' => 'required|unique_time_hour_class:' . request('classroom_id')
+                . '|professor_cant_be_busy:' . request('teaching_class_id'),
+        ]);
+
+        dd('passou');
     }
 
     /**
@@ -96,7 +79,7 @@ class ClassroomReservationController extends Controller
      * @param  \App\ClassroomRerservation  $classroomRerservation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ClassroomRerservation $classroomRerservation)
+    public function update(ClassroomRerservation $classroomRerservation)
     {
         //
     }

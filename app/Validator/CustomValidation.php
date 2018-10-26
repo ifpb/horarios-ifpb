@@ -2,7 +2,9 @@
 
 namespace App\Validator;
 
+use App\ClassroomReservation;
 use App\TeachingClass;
+use Illuminate\Support\Facades\Log;
 
 class CustomValidation {
     public function uniqueTeachingClass($attribute, $value, $parameters, $validator)
@@ -17,5 +19,43 @@ class CustomValidation {
         }
 
         return !(TeachingClass::where($whatToCheck)->exists());
+    }
+
+    public function uniqueTimeHourClass($attribute, $value, $parameters, $validator)
+    {
+        foreach($value as $timeId => $days) {
+            foreach($days as $dayId => $dayVal) {
+                if(ClassroomReservation::where([
+                    ['time_id', '=', $timeId],
+                    ['day_id', '=', $dayId],
+                    ['classroom_id', '=', $parameters[0]]
+                ])->exists())
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    public function professorCantBeBusy($attribute, $value, $parameters, $validator)
+    {
+        $teachingClass = TeachingClass::with('professor')->where('id', $parameters[0])->first();
+        $professor = $teachingClass->professor;
+        $professor->load('teaching_classes');
+
+        foreach($value as $timeId => $days) {
+            foreach($days as $dayId => $dayVal) {
+                foreach($professor->teaching_classes as $teaching_class) {
+                    if(ClassroomReservation::where([
+                        ['time_id', '=', $timeId],
+                        ['day_id', '=', $dayId],
+                        ['teaching_class_id', '=', $teaching_class->id]
+                    ])->exists())
+                        return false;
+                }
+            }
+        }
+
+        return true;
     }
 }
