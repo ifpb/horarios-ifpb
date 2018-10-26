@@ -12,17 +12,17 @@
             <label for="teachingclasses">Turma:</label>
             <select id="teachingclasses" name="teaching_class_id" class="form-control">
                 @foreach($teachingClasses as $teachingClass)
-                    <option value="{{ $teachingClass->id }}">{{ $teachingClass->subject->name . ' - ' . $teachingClass->professor->nickname }}</option>
+                    <option value="{{ $teachingClass->id }}" @if(old('teaching_class_id') == $teachingClass->id) selected @endif>{{ $teachingClass->subject->name . ' - ' . $teachingClass->professor->nickname }}</option>
                 @endforeach
             </select>
-            <a href="/admin/turmas/ver" class="btn btn-default mt-3" target="_blank">Ver detalhes desta turma</a>
+            <a href="#" id="see_teachingclass" class="btn btn-default mt-3" target="_blank">Ver detalhes desta turma</a>
         </div>
 
         <div class="form-group {!! $errors->has('block_id') ? 'has-error' : '' !!}">
             <label for="blocks">Selecione um bloco:</label>
             <select id="blocks" name="block_id" class="form-control">
                 @foreach($blocks as $block)
-                    <option value="{{ $block->id }}">{{ $block->name }}</option>
+                    <option value="{{ $block->id }}" @if(old('block_id') == $block->id) selected @endif>{{ $block->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -30,9 +30,6 @@
         <div class="form-group {!! $errors->has('classroom_id') ? 'has-error' : '' !!}">
             <label for="">Selecione uma sala para visualizar horário:</label>
             <select id="classrooms" name="classroom_id" class="form-control">
-                @foreach($blocks[0]->classrooms as $classroom)
-                    <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
-                @endforeach
             </select>
         </div>
 
@@ -52,7 +49,8 @@
             let blocks = $('#blocks')
             let teachingClass = $('#teachingclasses')
 
-            loadReservationTable(classroom.val(), teachingClass.val())
+            loadBlockClassrooms(blocks.val())
+            updateTeachingClassButton(teachingClass.val());
 
             classroom.on('change', function() {
                 loadReservationTable(classroom.val(), teachingClass.val())
@@ -64,6 +62,7 @@
 
             teachingClass.on('change', function() {
                 loadReservationTable(classroom.val(), teachingClass.val())
+                updateTeachingClassButton(teachingClass.val());
             });
         })
 
@@ -79,13 +78,21 @@
         function loadBlockClassrooms(block, select = '#classrooms') {
             select = $(select)
             select.html('')
+            classroom_selected = {{ old('classroom_id') }}
             $.get('/api/info/salas-do-bloco/' + block, salas => {
                 $.each(salas, (i, sala) => {
-                    select.append(`<option value=${sala.id}>${sala.name}</option>`)
+                    if(sala.id == classroom_selected)
+                        select.append(`<option value=${sala.id} selected>${sala.name}</option>`)
+                    else
+                        select.append(`<option value=${sala.id}>${sala.name}</option>`)
                 })
                 select.trigger('change');
             })
 
+        }
+
+        function updateTeachingClassButton(id) {
+            $('#see_teachingclass').attr('href', `/admin/turmas/${id}/ver`);
         }
     </script>
 @endsection

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Block;
+use App\ClassroomReservation;
 use App\TeachingClass;
 use App\ClassroomRerservation;
+use App\Support\LogActivity;
 
 class ClassroomReservationController extends Controller
 {
@@ -47,7 +49,24 @@ class ClassroomReservationController extends Controller
                 . '|professor_cant_be_busy:' . request('teaching_class_id'),
         ]);
 
-        dd('passou');
+        // ADICIONAR NOVA VERIFICAÇÃO: E se o cara enviar DAYS E TIMES fora do intervalo?
+        // Sugestão: day_time_exists
+
+        foreach(request('reserveClass') as $timeId => $days) {
+            foreach($days as $dayId => $dayVal) {
+                ClassroomReservation::create([
+                    'classroom_id' => request('classroom_id'),
+                    'day_id' => $dayId,
+                    'time_id' => $timeId,
+                    'teaching_class_id' => request('teaching_class_id')
+                ]);
+
+                LogActivity::store("Reservou a sala " . request('classroom_id') . " para o dia " . $dayId .
+                    " e hora " . $timeId . " para a turma " . request('teaching_class_id'));
+            }
+        }
+
+        return redirect()->back();
     }
 
     /**
