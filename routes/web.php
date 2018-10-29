@@ -61,8 +61,8 @@ Route::group(array('prefix' => 'admin'), function()
     Route::get('salas/reservas/adicionar', 'ClassroomReservationController@create')->name('classroomreservations.create');
     Route::post('salas/reservas', 'ClassroomReservationController@store')->name('classroomreservations.store');
 
-    Route::get('salas/reservas/{classroomReservation}/editar', 'ClassroomReservationController@edit')->name('classroomreservations.edit');
-    Route::patch('salas/reservas/{classroomReservation}', 'ClassroomReservationController@update')->name('classroomreservations.update');
+//    Route::get('salas/reservas/{classroomReservation}/editar', 'ClassroomReservationController@edit')->name('classroomreservations.edit');
+//    Route::patch('salas/reservas/{classroomReservation}', 'ClassroomReservationController@update')->name('classroomreservations.update');
     Route::get('salas/reservas/{classroomReservation}/remover', 'ClassroomReservationController@destroy')->name('classroomreservetions.destroy');
 
     // UNIDADES DE ENSINO
@@ -175,6 +175,7 @@ Route::group(array('prefix' => 'admin'), function()
 
 
 Auth::routes();
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

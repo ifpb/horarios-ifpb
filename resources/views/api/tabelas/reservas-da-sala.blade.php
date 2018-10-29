@@ -24,14 +24,17 @@
                         @php ($thisDayTimeReservations = $dayTimeReservations[$time->id][$day->id])
                         <td>
                             @if(!$thisDayTimeReservations->isEmpty())
-                                <div class="flex flex-col leading-normal">
-                                    <span class="font-bold">{{ $thisDayTimeReservations->first()->teachingClass->subject->initials }}</span>
-                                    <span class="text-sm">{{ $thisDayTimeReservations->first()->teachingClass->professor->nickname }} - {{ $thisDayTimeReservations->first()->teachingClass->type->initials }}</span>
-                                    <span class="text-sm text-red-dark"><a href="{{ route('teachingclasses.show', $thisDayTimeReservations->first()->teachingClass->id) }}" target="_blank">Turma {{ $thisDayTimeReservations->first()->teachingClass->id }}</a></span>
+                                @php ($thisDayTimeReservation = $thisDayTimeReservations->first())
+                                <div class="flex flex-col leading-normal reservation-{{ $thisDayTimeReservation->id }}">
+                                    <span class="font-bold">{{ $thisDayTimeReservation->teachingClass->subject->initials }}</span>
+                                    <span class="text-sm">{{ $thisDayTimeReservation->teachingClass->professor->nickname }} - {{ $thisDayTimeReservation->teachingClass->type->initials }}</span>
+                                    <span class="text-sm text-red-dark"><a href="{{ route('teachingclasses.show', $thisDayTimeReservation->teachingClass->id) }}" target="_blank">Turma {{ $thisDayTimeReservation->teachingClass->id }}</a></span>
+                                    <span class="text-sm"><a class="text-red-dark hover:text-red-darker remove-res" reservation-id="{{ $thisDayTimeReservation->id }}" href="#">Remover Reserva</a></span>
                                 </div>
                             @endif
                         </td>
                     @endforeach
+
 
                 </tr>
             @endforeach

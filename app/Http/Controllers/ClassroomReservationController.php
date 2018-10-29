@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Block;
 use App\ClassroomReservation;
 use App\TeachingClass;
-use App\ClassroomRerservation;
 use App\Support\LogActivity;
 
 class ClassroomReservationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -72,10 +75,10 @@ class ClassroomReservationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ClassroomRerservation  $classroomRerservation
+     * @param  \App\ClassroomReservation  $classroomReservation
      * @return \Illuminate\Http\Response
      */
-    public function show(ClassroomRerservation $classroomRerservation)
+    public function show(ClassroomReservation $classroomReservation)
     {
         return view('pages.admin.salas.reservas.ver-reserva');
     }
@@ -83,10 +86,10 @@ class ClassroomReservationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ClassroomRerservation  $classroomRerservation
+     * @param  \App\ClassroomReservation  $classroomReservation
      * @return \Illuminate\Http\Response
      */
-    public function edit(ClassroomRerservation $classroomRerservation)
+    public function edit(ClassroomReservation $classroomReservation)
     {
         //
     }
@@ -95,10 +98,10 @@ class ClassroomReservationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ClassroomRerservation  $classroomRerservation
+     * @param  \App\ClassroomReservation  $classroomReservation
      * @return \Illuminate\Http\Response
      */
-    public function update(ClassroomRerservation $classroomRerservation)
+    public function update(ClassroomReservation $classroomReservation)
     {
         //
     }
@@ -106,11 +109,21 @@ class ClassroomReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ClassroomRerservation  $classroomRerservation
+     * @param  \App\ClassroomReservation  $classroomReservation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ClassroomRerservation $classroomRerservation)
+    public function destroy(ClassroomReservation $classroomReservation)
     {
-        //
+        $classroomReservation->load('teachingClass.subject', 'teachingClass.professor', 'day', 'time', 'classroom');
+        LogActivity::store("Removeu a reserva da sala " . $classroomReservation->classroom->name .  " da disciplina "
+            . $classroomReservation->teachingClass->subject->name . " do professor "
+            . $classroomReservation->teachingClass->professor->name . " no dia "
+            . $classroomReservation->day->name . " e horário "
+            . $classroomReservation->time->starts . ' - ' . $classroomReservation->time->ends);
+
+        $classroomReservation->delete();
+
+        flash('A reserva foi removida!');
+        return redirect(route('teachingclasses'));
     }
 }
