@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Subject;
 use App\Professor;
+use App\Day;
+use App\Time;
+use App\Classroom;
 use App\TeachingClass;
 use App\TeachingClassType;
 use App\Support\LogActivity;
@@ -66,7 +69,19 @@ class TeachingClassController extends Controller
      */
     public function show(TeachingClass $teachingClass)
     {
-        return view('pages.admin.educacional.turmas.ver-turma', compact('teachingClass'));
+        $teachingClass->load('reservations.classroom');
+
+        $times = $teachingClass->subject->course->shifts->pluck('times')->collapse()->sortBy('id');
+        $days = Day::orderBy('id', 'asc')->get();
+
+        $classrooms = $teachingClass->reservations->pluck('classroom')->unique();
+
+        foreach($classrooms as $classroom) {
+            $classroom->dayTimeReservations =
+                $this->getDayTimeClassroomReservationCollection($times, $days, $classroom, $teachingClass);
+        }
+
+        return view('pages.admin.educacional.turmas.ver-turma', compact('teachingClass', 'times', 'days', 'classrooms'));
     }
 
     /**
@@ -126,5 +141,19 @@ class TeachingClassController extends Controller
         flash('A turma foi removida!');
 
         return redirect(route('teachingclasses'));
+    }
+
+    public function getDayTimeClassroomReservationCollection($times, $days, Classroom $classroom, TeachingClass $teachingClass)
+    {
+        foreach($times as $time) {
+            $timeReservations[$time->id] = $teachingClass->reservations->where('time_id', $time->id)
+                ->where('classroom_id', $classroom->id);
+
+            foreach($days as $day) {
+                $dayTimeReservations[$time->id][$day->id] = $timeReservations[$time->id]->where('day_id', $day->id);
+            }
+        }
+
+        return $dayTimeReservations;
     }
 }
