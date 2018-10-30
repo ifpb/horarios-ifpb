@@ -29,8 +29,7 @@
                         <td>{{ $teachingClass->subject->name }}</td>
                         <td>{{ $teachingClass->professor->name }}</td>
                         <td>{{ $teachingClass->type->initials }}</td>
-                        {{--TODO: Dinamizar se há salas reservadas--}}
-                        <td>Não</td>
+                        <td>@if($teachingClass->reservations_count) Sim @else Não @endif</td>
                         <td>
                             <a class="btn btn-default" href="{{ route('teachingclasses.show', $teachingClass->id) }}" role="button">
                                 <span class="glyphicon glyphicon-eye-open"></span>

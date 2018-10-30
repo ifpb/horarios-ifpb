@@ -28,8 +28,13 @@ class Professor extends Model
         return $this->belongsTo(EmploymentType::class);
     }
 
-    public function teaching_classes()
+    public function teachingClasses()
     {
         return $this->hasMany(TeachingClass::class);
+    }
+
+    public function reservations()
+    {
+        return $this->hasManyThrough(ClassroomReservation::class, TeachingClass::class);
     }
 }

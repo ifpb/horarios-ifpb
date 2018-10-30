@@ -26,7 +26,7 @@ class CreateClassroomReservationsTable extends Migration
             $table->foreign('time_id')->references('id')->on('times')->onDelete('restrict');
 
             $table->unsignedInteger('teaching_class_id');
-            $table->foreign('teaching_class_id')->references('id')->on('teaching_classes')->onDelete('restrict');
+            $table->foreign('teaching_class_id')->references('id')->on('teaching_classes')->onDelete('cascade');
 
             $table->timestamps();
         });

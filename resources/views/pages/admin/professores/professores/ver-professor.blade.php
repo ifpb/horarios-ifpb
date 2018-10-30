@@ -64,7 +64,6 @@
         </div>
     </form>
 
-    {{--TODO: Dinamizar Turmas--}}
     <hr>
     <h2 class="mb-3">Turmas</h2>
 
@@ -72,50 +71,36 @@
         <table class="table dataTable">
             <thead>
             <tr>
+                <th>id</th>
                 <th>Disciplina</th>
+                <th>Professor</th>
                 <th>Ident.</th>
-                <th>Sala Reservada?</th>
                 <th>Ação</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Administração de Sistemas Abertos</td>
-                <td>U</td>
-                <td>Não</td>
-                <td>
-                    <a class="btn btn-default" href="/admin/turmas/ver" role="button">
-                        <span class="glyphicon glyphicon-eye-open"></span>
-                    </a>
-
-                    <a class="btn btn-default" href="#" role="button">
-                        <span class="glyphicon glyphicon-edit"></span>
-                    </a>
-
-                    <a class="btn btn-default" href="#" onClick="createWarning('#');return false;" role="button">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>Desenvolvimento Web</td>
-                <td>U</td>
-                <td>Sim</td>
-                <td>
-                    <a class="btn btn-default" href="/admin/turmas/ver" role="button">
-                        <span class="glyphicon glyphicon-eye-open"></span>
-                    </a>
-
-                    <a class="btn btn-default" href="#" role="button">
-                        <span class="glyphicon glyphicon-edit"></span>
-                    </a>
-
-                    <a class="btn btn-default" href="#" onClick="createWarning('#');return false;" role="button">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </a>
-                </td>
-            </tr>
+            @foreach($professor->teachingClasses as $teachingClass)
+                <tr>
+                    <td>{{ $teachingClass->id }}</td>
+                    <td>{{ $teachingClass->subject->name }}</td>
+                    <td>{{ $teachingClass->professor->name }}</td>
+                    <td>{{ $teachingClass->type->initials }}</td>
+                    <td>
+                        <a class="btn btn-default" href="{{ route('teachingclasses.show', $teachingClass->id) }}" role="button">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>
+
+    <hr>
+    <h2 class="mb-3">Horários</h2>
+    @include('partials.tabela-dias-horarios-admin', compact('days', 'times', 'dayTimeReservations'))
+@endsection
+
+@section('custom-js')
+    <script src="{{ URL::asset('js/admin/remove-reservation.js') }}"></script>
 @endsection

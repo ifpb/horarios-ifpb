@@ -20,7 +20,7 @@ class TeachingClassController extends Controller
      */
     public function index()
     {
-        $teachingClasses = TeachingClass::with('subject', 'professor', 'type')->get();
+        $teachingClasses = TeachingClass::with('subject', 'professor', 'type')->withCount('reservations')->get();
         return view('pages.admin.educacional.turmas.turmas', compact('teachingClasses'));
     }
 

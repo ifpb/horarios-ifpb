@@ -13,7 +13,7 @@ class Subject extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function teaching_classes()
+    public function teachingClasses()
     {
         return $this->hasMany(TeachingClass::class);
     }

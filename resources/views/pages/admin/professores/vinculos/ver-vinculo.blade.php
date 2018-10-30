@@ -20,7 +20,6 @@
         </div>
     </form>
 
-    {{--TODO: Dinamizar Professores nos Vínculos--}}
     <hr />
     <h2 class="mb-3">Professores</h2>
 
@@ -28,21 +27,27 @@
         <table class="table dataTable">
             <thead>
             <tr>
+                <th>id</th>
                 <th>Nome</th>
-                <th>Abreviação</th>
+                <th>Apelido</th>
+                <th>Ativo</th>
                 <th>Ação</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>José Quaresma Filho</td>
-                <td>Zé Filho</td>
-                <td>
-                    <a class="btn btn-default" href="/admin/professores/ver" role="button">
-                        <span class="glyphicon glyphicon-eye-open"></span>
-                    </a>
-                </td>
-            </tr>
+            @foreach($employmentBond->professors as $professor)
+                <tr>
+                    <td>{{ $professor->id }}</td>
+                    <td>{{ $professor->name }}</td>
+                    <td>{{ $professor->nickname }}</td>
+                    <td>@if($professor->active) Sim @else Não @endif</td>
+                    <td>
+                        <a class="btn btn-default" href="{{ route('professors.show', $professor->id) }}" role="button">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>

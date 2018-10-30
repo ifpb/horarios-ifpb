@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TeachingClassType extends Model
 {
-    public function teaching_classes()
+    public function teachingClasses()
     {
         return $this->hasMany(TeachingClass::class);
     }

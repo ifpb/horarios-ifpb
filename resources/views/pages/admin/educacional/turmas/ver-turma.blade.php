@@ -40,7 +40,6 @@
         </div>
     </form>
 
-    {{--TODO: Dinamizar Salas Reservadas--}}
     <hr>
     <h2 class="mb-3">Salas Reservadas</h2>
 

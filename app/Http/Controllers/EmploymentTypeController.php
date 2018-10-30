@@ -56,6 +56,7 @@ class EmploymentTypeController extends Controller
      */
     public function show(EmploymentType $employmentType)
     {
+        $employmentType->load('professors');
         return view('pages.admin.professores.regimes.ver-regime', compact('employmentType'));
     }
 

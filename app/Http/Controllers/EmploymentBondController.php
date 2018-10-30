@@ -54,6 +54,7 @@ class EmploymentBondController extends Controller
      */
     public function show(EmploymentBond $employmentBond)
     {
+        $employmentBond->load('professors');
         return view('pages.admin.professores.vinculos.ver-vinculo', compact('employmentBond'));
     }
 

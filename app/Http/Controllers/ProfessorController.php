@@ -7,6 +7,7 @@ use App\EmploymentType;
 use App\Professor;
 use App\TeachingUnit;
 use App\Day;
+use App\Time;
 use App\Support\LogActivity;
 
 class ProfessorController extends Controller
@@ -80,10 +81,33 @@ class ProfessorController extends Controller
      */
     public function show(Professor $professor)
     {
-        $days = Day::all()->sortBy('id');
+        $times = Time::orderBy('id', 'asc')->get();
+        $days = Day::orderBy('id', 'asc')->get();
 
-        $professor->load('teachingUnit', 'employmentBond', 'employmentType', 'days');
-        return view('pages.admin.professores.professores.ver-professor', compact('professor', 'days'));
+        $professor->load('teachingUnit', 'employmentBond', 'employmentType', 'days',
+            'teachingClasses.subject',
+            'teachingClasses.professor',
+            'teachingClasses.type',
+            'reservations.teachingClass.subject',
+            'reservations.teachingClass.professor',
+            'reservations.teachingClass.type');
+
+        $dayTimeReservations = $this->getDayTimeReservationCollection($times, $days, $professor->reservations);
+
+        return view('pages.admin.professores.professores.ver-professor', compact('professor', 'days', 'times', 'dayTimeReservations'));
+    }
+
+    public function getDayTimeReservationCollection($times, $days, $reservations)
+    {
+        foreach($times as $time) {
+            $timeReservations[$time->id] = $reservations->where('time_id', $time->id);
+
+            foreach($days as $day) {
+                $dayTimeReservations[$time->id][$day->id] = $timeReservations[$time->id]->where('day_id', $day->id);
+            }
+        }
+
+        return $dayTimeReservations;
     }
 
     /**

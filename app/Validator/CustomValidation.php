@@ -41,11 +41,11 @@ class CustomValidation {
     {
         $teachingClass = TeachingClass::with('professor')->where('id', $parameters[0])->first();
         $professor = $teachingClass->professor;
-        $professor->load('teaching_classes');
+        $professor->load('teachingClasses');
 
         foreach($value as $timeId => $days) {
             foreach($days as $dayId => $dayVal) {
-                foreach($professor->teaching_classes as $teaching_class) {
+                foreach($professor->teachingClasses as $teaching_class) {
                     if(ClassroomReservation::where([
                         ['time_id', '=', $timeId],
                         ['day_id', '=', $dayId],
