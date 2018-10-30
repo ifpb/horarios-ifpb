@@ -32,21 +32,27 @@
         <table class="table dataTable">
             <thead>
             <tr>
+                <th>id</th>
                 <th>Nome</th>
                 <th>Abreviação</th>
+                <th>Períodos</th>
                 <th>Ação</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Redes de Computadores</td>
-                <td>CST REDES</td>
-                <td>
-                    <a class="btn btn-default" href="/admin/cursos/ver" role="button">
-                        <span class="glyphicon glyphicon-eye-open"></span>
-                    </a>
-                </td>
-            </tr>
+            @foreach($teachingUnit->courses as $course)
+                <tr>
+                    <td>{{ $course->id }}</td>
+                    <td>{{ $course->name }}</td>
+                    <td>{{ $course->initials }}</td>
+                    <td>{{ $course->periods }}</td>
+                    <td>
+                        <a class="btn btn-default" href="{{ route('courses.show', $course->id) }}" role="button">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>
@@ -54,25 +60,33 @@
     <hr />
     <h2 class="mb-3">Professores</h2>
 
+
+    {{--TODO: Talvez extrair essas tabelas para partials e evitar repetição de código--}}
     <div class="table-responsive">
         <table class="table dataTable">
             <thead>
             <tr>
+                <th>id</th>
                 <th>Nome</th>
-                <th>Abreviação</th>
+                <th>Apelido</th>
+                <th>Ativo</th>
                 <th>Ação</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>José Quaresma Filho</td>
-                <td>Zé Filho</td>
-                <td>
-                    <a class="btn btn-default" href="/admin/professores/ver" role="button">
-                        <span class="glyphicon glyphicon-eye-open"></span>
-                    </a>
-                </td>
-            </tr>
+            @foreach($teachingUnit->professors as $professor)
+                <tr>
+                    <td>{{ $professor->id }}</td>
+                    <td>{{ $professor->name }}</td>
+                    <td>{{ $professor->nickname }}</td>
+                    <td>@if($professor->active) Sim @else Não @endif</td>
+                    <td>
+                        <a class="btn btn-default" href="{{ route('professors.show', $professor->id) }}" role="button">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>

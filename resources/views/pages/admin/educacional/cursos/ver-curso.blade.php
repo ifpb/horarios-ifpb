@@ -13,7 +13,6 @@
         Remover Curso
     </a>
 
-    {{-- TODO: Dinamizar Unidades de Ensino e Disciplinas--}}
     <form>
         <div class="form-group">
             <label for="teaching_unit_id">Unidade de ensino</label>
@@ -56,36 +55,29 @@
         <table class="table dataTable">
             <thead>
             <tr>
+                <th>id</th>
                 <th>Nome</th>
-                <th>Curso</th>
+                <th>Abreviação</th>
                 <th>Periodo</th>
                 <th>CH</th>
                 <th>Ação</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Administração de Sistemas Abertos</td>
-                <td>CST REDES</td>
-                <td>3</td>
-                <td>87</td>
-                <td>
-                    <a class="btn btn-default" href="/admin/disciplinas/ver" role="button">
-                        <span class="glyphicon glyphicon-eye-open"></span>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>Desenvolvimento Web</td>
-                <td>CST REDES</td>
-                <td>4</td>
-                <td>87</td>
-                <td>
-                    <a class="btn btn-default" href="/admin/disciplinas/ver" role="button">
-                        <span class="glyphicon glyphicon-eye-open"></span>
-                    </a>
-                </td>
-            </tr>
+            @foreach($course->subjects as $subject)
+                <tr>
+                    <td>{{ $subject->id }}</td>
+                    <td>{{ $subject->name }}</td>
+                    <td>{{ $subject->initials }}</td>
+                    <td>{{ $subject->period }}</td>
+                    <td>{{ $subject->workload }}h</td>
+                    <td>
+                        <a class="btn btn-default" href="{{ route('subjects.show', $subject->id) }}" role="button">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>

@@ -20,8 +20,6 @@
         </div>
     </form>
 
-    {{--TODO: Dinamizar exibição de cursos--}}
-
     <hr>
     <h2 class="mb-3">Cursos</h2>
 
@@ -29,21 +27,27 @@
         <table class="table dataTable">
             <thead>
             <tr>
+                <th>id</th>
                 <th>Nome</th>
                 <th>Abreviação</th>
+                <th>Períodos</th>
                 <th>Ação</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Redes de Computadores</td>
-                <td>CST REDES</td>
-                <td>
-                    <a class="btn btn-default" href="/admin/cursos/ver" role="button">
-                        <span class="glyphicon glyphicon-eye-open"></span>
-                    </a>
-                </td>
-            </tr>
+            @foreach($educationLevel->courses as $course)
+                <tr>
+                    <td>{{ $course->id }}</td>
+                    <td>{{ $course->name }}</td>
+                    <td>{{ $course->initials }}</td>
+                    <td>{{ $course->periods }}</td>
+                    <td>
+                        <a class="btn btn-default" href="{{ route('courses.show', $course->id) }}" role="button">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
     </div>

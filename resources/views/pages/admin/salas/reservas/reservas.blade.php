@@ -37,26 +37,11 @@
 
 @section('custom-js')
     {{--TODO: Colocar isto num arquivo JS--}}
+    <script src="{{ URL::asset('js/admin/remove-reservation.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             let classroom = $('#classrooms')
             let blocks = $('#blocks')
-
-            $(document).on('click', '.remove-res', function(e) {
-                e.preventDefault();
-                let reservationId = $(this).attr('reservation-id')
-
-                reservationToRemove = $('.reservation-' + reservationId);
-                //
-                // loadingStatus = '<img src="/svg/loading.svg" class="loading" style="width:40px; height:40px;" title="Carregando!" />';
-                // reservationToRemove.parent().append(loadingStatus);
-                reservationToRemove.fadeOut();
-
-                // $('.loading').remove();
-                $.get(`/admin/salas/reservas/${reservationId}/remover`).fail(function() {
-                    reservationToRemove.parent().append('<span class="text-sm text-red-dark mt-2">Houve um erro para remover a reserva! (Atualize e tente novamente)</span>');
-                });
-            });
 
             loadReservationTable(classroom.val())
 

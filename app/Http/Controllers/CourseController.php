@@ -70,7 +70,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        $course->load('shifts', 'teachingUnit', 'EducationLevel');
+        $course->load('shifts', 'teachingUnit', 'EducationLevel', 'subjects');
         $shifts = Shift::all();
 
         return view('pages.admin.educacional.cursos.ver-curso', compact('course', 'shifts'));

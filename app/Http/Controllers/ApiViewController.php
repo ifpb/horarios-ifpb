@@ -34,7 +34,7 @@ class ApiViewController extends Controller
         $times = $teachingClass->subject->course->shifts->pluck('times')->collapse()->sortBy('id');
         $days = Day::orderBy('id', 'asc')->get();
 
-        $dayTimeReservations = $this->getDayTimeReservationCollection($times, $days, $classroom, $teachingClass);
+        $dayTimeReservations = $this->getDayTimeReservationCollection($times, $days, $classroom);
 
         return view('api.tabelas.reserva-de-sala', compact('classroom', 'times', 'days', 'dayTimeReservations'));
     }

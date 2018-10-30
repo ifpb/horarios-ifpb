@@ -54,6 +54,7 @@ class EducationLevelController extends Controller
      */
     public function show(EducationLevel $educationLevel)
     {
+        $educationLevel->load('courses');
         return view('pages.admin.educacional.niveis.ver-nivel', compact('educationLevel'));
     }
 

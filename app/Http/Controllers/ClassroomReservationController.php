@@ -11,7 +11,7 @@ class ClassroomReservationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['only' => ['destroy']]);
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -81,29 +81,6 @@ class ClassroomReservationController extends Controller
     public function show(ClassroomReservation $classroomReservation)
     {
         return view('pages.admin.salas.reservas.ver-reserva');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ClassroomReservation  $classroomReservation
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ClassroomReservation $classroomReservation)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ClassroomReservation  $classroomReservation
-     * @return \Illuminate\Http\Response
-     */
-    public function update(ClassroomReservation $classroomReservation)
-    {
-        //
     }
 
     /**

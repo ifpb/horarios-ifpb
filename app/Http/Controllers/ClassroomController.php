@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Block;
+use App\Time;
+use App\Day;
 use App\Classroom;
 use App\ClassroomType;
 use App\Support\LogActivity;
@@ -65,9 +67,18 @@ class ClassroomController extends Controller
      */
     public function show(Classroom $classroom)
     {
-        $classroom->load('type', 'block');
+        $classroom->load('type', 'block',
+            'reservations.classroom',
+            'reservations.teachingClass.professor',
+            'reservations.teachingClass.subject',
+            'reservations.teachingClass.type');
 
-        return view('pages.admin.salas.salas.ver-sala', compact('classroom'));
+        $times = Time::orderBy('id', 'asc')->get();
+        $days = Day::orderBy('id', 'asc')->get();
+
+        $dayTimeReservations = $this->getDayTimeReservationCollection($times, $days, $classroom);
+
+        return view('pages.admin.salas.salas.ver-sala', compact('classroom', 'times', 'days', 'dayTimeReservations'));
     }
 
     /**
@@ -123,5 +134,18 @@ class ClassroomController extends Controller
 
         flash('A sala foi removida!');
         return redirect(route('classrooms'));
+    }
+
+    public function getDayTimeReservationCollection($times, $days, Classroom $classroom)
+    {
+        foreach($times as $time) {
+            $timeReservations[$time->id] = $classroom->reservations->where('time_id', $time->id);
+
+            foreach($days as $day) {
+                $dayTimeReservations[$time->id][$day->id] = $timeReservations[$time->id]->where('day_id', $day->id);
+            }
+        }
+
+        return $dayTimeReservations;
     }
 }

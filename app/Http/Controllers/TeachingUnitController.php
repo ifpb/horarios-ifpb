@@ -55,6 +55,7 @@ class TeachingUnitController extends Controller
      */
     public function show(TeachingUnit $teachingUnit)
     {
+        $teachingUnit->load('courses', 'professors');
         return view('pages.admin.educacional.unidades.ver-unidade', compact('teachingUnit'));
     }
 
