@@ -64,6 +64,21 @@
                 loadReservationTable(classroom.val(), teachingClass.val())
                 updateTeachingClassButton(teachingClass.val());
             });
+
+            $(document).on('change', ':checkbox', function() {
+                if(this.checked) {
+                    let time = this.getAttribute('data-time');
+                    let day = this.getAttribute('data-day');
+
+                    $.get(`/api/info/reserva-de-sala/disponibilidade-professor/${teachingClass.val()}/${day}/${time}`, result => {
+                        if(!result) {
+                            let status = $('.reserve-status-' + time + '-' + day)
+                            status.show()
+                            status.html('O professor está ocupado neste horário')
+                        }
+                    })
+                }
+            });
         })
 
         function loadReservationTable(classroom, teachingclass, div = '.tables') {

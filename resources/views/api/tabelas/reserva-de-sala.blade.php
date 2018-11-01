@@ -30,9 +30,10 @@
                                     <span class="text-sm text-red-dark"><a href="{{ route('teachingclasses.show', $thisDayTimeReservations->first()->teachingClass->id) }}" target="_blank">Turma {{ $thisDayTimeReservations->first()->teachingClass->id }}</a></span>
                                 </div>
                             @else
-                                <div class="flex justify-center">
-                                    <input type="checkbox" id="reserve-{{ $time->id }}-{{ $day->id }}" name="reserveClass[{{ $time->id }}][{{ $day->id }}]">
+                                <div class="flex flex-col items-center justify-center">
+                                    <input type="checkbox" id="reserve-{{ $time->id }}-{{ $day->id }}" data-time="{{ $time->id }}" data-day="{{ $day->id }}" name="reserveClass[{{ $time->id }}][{{ $day->id }}]">
                                     <label for="reserve-{{ $time->id }}-{{ $day->id }}"></label>
+                                    <span class="text-sm text-red-dark mt-2 hidden reserve-status-{{ $time->id }}-{{ $day->id }}"></span>
                                 </div>
                             @endif
                         </td>

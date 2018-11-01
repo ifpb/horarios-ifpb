@@ -20,6 +20,7 @@ Route::group(array('prefix' => 'tabelas'), function()
 Route::group(array('prefix' => 'info'), function()
 {
     Route::get('salas-do-bloco/{block}', 'ApiController@getBlockClassrooms')->name('api.infos.salas-do-bloco');
+    Route::get('reserva-de-sala/disponibilidade-professor/{teachingClass}/{day}/{time}', 'ApiController@isProfessorAvailable')->name('api.infos.disponibilidade-professor');
 });
 
 //Route::middleware('auth:api')->get('/user', function (Request $request) {

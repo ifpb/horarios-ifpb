@@ -17,7 +17,7 @@ class CreateSubjectsTable extends Migration
             $table->increments('id');
 
             $table->unsignedInteger('course_id')->nullable();
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('set null');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('restrict');
 
             $table->string('name');
             $table->string('initials');

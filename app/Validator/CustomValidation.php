@@ -51,6 +51,8 @@ class CustomValidation {
                         ['day_id', '=', $dayId],
                         ['teaching_class_id', '=', $teaching_class->id]
                     ])->exists())
+                        flash('Professor está ocupado na hora '
+                            .  $timeId . ' no dia ' . $dayId . ' para a turma ' . $teaching_class->id, 'danger');
                         return false;
                 }
             }
