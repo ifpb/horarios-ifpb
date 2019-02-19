@@ -26,6 +26,7 @@ class CreateProfessorsTable extends Migration
             $table->foreign('employment_type_id')->references('id')->on('employment_types')->onDelete('set null');
 
             $table->string('name');
+            $table->string('slug')->unique();
             $table->string('nickname');
             $table->string('email')->nullable();
             $table->unsignedInteger('phone')->nullable();

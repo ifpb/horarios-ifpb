@@ -11,17 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'MainController@home')->name('main.home');
 
-Route::get('cursos', function() {
-    return view('pages.majors');
-});
-
-Route::get('cursos/redes-de-computadores', function() {
-    return view('pages.major');
-});
+Route::get('cursos', 'MainController@courses')->name('main.courses');
+Route::get('cursos/{course}', 'MainController@course')->name('main.course')->where(['course' => '[a-z0-9-]+']);
 
 Route::group(array('prefix' => 'admin'), function()
 {

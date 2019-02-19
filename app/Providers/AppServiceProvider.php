@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Validator;
 use App\Validator\CustomValidation;
+use App\Log;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Mostrando a última alteração
+        $lastLog = Log::orderBy('id', 'desc')->with('user')->first();
+        View::share('lastLog', $lastLog);
 
         Validator::extend('unique_teaching_class', 'App\Validator\CustomValidation@uniqueTeachingClass');
         Validator::extend('unique_time_hour_class', 'App\Validator\CustomValidation@uniqueTimeHourClass');

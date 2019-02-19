@@ -99,7 +99,11 @@ header {
   }
 
   a:hover {
-    @apply bg-green-dark underline
+    @apply bg-green-dark
+  }
+
+  .active {
+    @apply bg-green-dark
   }
 }
 
@@ -116,14 +120,14 @@ header {
   @apply bg-grey-lighter w-full text-sm mt-4 px-5 py-4 rounded-full appearance-none outline-none
 }
 
-.majors {
+.courses {
   @apply w-full mt-4 text-center;
 
   thead {
     @apply bg-green-dark text-white;
 
     th {
-      @apply font-semibold py-3 hidden;
+      @apply font-semibold py-3 hidden px-3;
     }
 
     th:first-child {

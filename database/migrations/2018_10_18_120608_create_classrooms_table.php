@@ -17,6 +17,7 @@ class CreateClassroomsTable extends Migration
             $table->increments('id');
 
             $table->string('name');
+            $table->string('slug')->unique();
             $table->string('initials');
             $table->unsignedInteger('capacity');
 

@@ -7,10 +7,16 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Horários IFPB - Instituto Federal da Paraíba') }}</title>
+    <title>
+        @if(View::hasSection('title'))
+            @yield('title') - Horários IFPB
+        @else
+            Horários IFPB - Instituto Federal da Paraíba
+        @endif
+    </title>
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
 
     <!-- Styles -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="flex min-h-screen flex-col">
@@ -18,11 +24,11 @@
         <div class="top-bar bg-grey-light">
             <div class="container flex justify-between text-sm items-center">
                 <div class="last-updated hidden md:flex text-xs">
-                    Última atualização por: Jordan Miguel às 23:15 de 18/09.
+                    Última atualização por: {{ $lastLog->user->name }} {{ $lastLog->updated_at->diffForHumans() }}.
                 </div>
                 <div class="links flex justify-center w-full md:w-auto">
-                    <a href="#">Acesso ao SUAP</a>
-                    <a href="#">Site do IFPB</a>
+                    <a href="https://suap.ifpb.edu.br/" target="_blank" title="SUAP">Acesso ao SUAP</a>
+                    <a href="https://www.ifpb.edu.br/" target="_blank" title="Site do IFPB">Site do IFPB</a>
                 </div>
             </div>
         </div>
@@ -30,7 +36,9 @@
             <div class="container md:flex md:justify-between md:items-center px-5 md:px-0">
                 <div class="logo leading-tight">
                     <h4 class="font-light text-xs">Instituto Federal da Paraíba</h4>
-                    <h1 class="font-extrabold text-3xl tracking-tight md:tracking-normal">Horário Acadêmico</h1>
+                    <h1 class="font-extrabold text-3xl tracking-tight md:tracking-normal">
+                        <a href="{{ route('main.home') }}" title="Horário Acadêmico IFPB" class="hover:text-white hover:no-underline">Horário Acadêmico</a>
+                    </h1>
                     <h4 class="font-light text-sm">MINISTÉRIO DA EDUCAÇÃO</h4>
                 </div>
                 <div class="mt-8 md:w-1/2 md:mt-0">
@@ -39,7 +47,7 @@
             </div>
 
             <div class="container mt-10 flex flex-col md:flex-row">
-                <a href="#" class="button-main-menu">
+                <a href="{{ route('main.courses') }}" class="button-main-menu">
                     <i>
                         <svg width="38" height="22" xmlns="http://www.w3.org/2000/svg"><g fill="#FFF" fill-rule="nonzero"><path d="M19.496 14.585L8 11v5.987C8 19.757 13.149 22 19.5 22c6.35 0 11.5-2.244 11.5-5.012 0-.022-.007-.044-.007-.065V11l-11.497 3.585z"/><path d="M0 7.143l4.05 1.415.345-.722 1.488-.124.212.216-1.277.296-.186.538s-2.884 5.89-2.46 8.772c0 0 1.8 1.049 3.599 0l.478-7.879V9l2.678-.59-.19.454-1.996.635.923.322L19 13.231l11.336-3.41L38 7.143 19 0 0 7.143z"/></g></svg>
                     </i> Cursos
@@ -104,6 +112,12 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
+
+    {{--DataTables--}}
+    {{--TODO: put this to local storage--}}
+    <link href="{{ asset('css/vendor/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/vendor/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/vendor/dataTables.bootstrap.min.js') }}"></script>
 
     @yield('additional-css-js')
     @yield('custom-js')
