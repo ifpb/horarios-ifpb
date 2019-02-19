@@ -4,7 +4,6 @@ namespace App\Validator;
 
 use App\ClassroomReservation;
 use App\TeachingClass;
-use Illuminate\Support\Facades\Log;
 
 class CustomValidation {
     public function uniqueTeachingClass($attribute, $value, $parameters, $validator)
@@ -50,10 +49,11 @@ class CustomValidation {
                         ['time_id', '=', $timeId],
                         ['day_id', '=', $dayId],
                         ['teaching_class_id', '=', $teaching_class->id]
-                    ])->exists())
+                    ])->exists()) {
                         flash('Professor está ocupado na hora '
-                            .  $timeId . ' no dia ' . $dayId . ' para a turma ' . $teaching_class->id, 'danger');
+                            . $timeId . ' no dia ' . $dayId . ' para a turma ' . $teaching_class->id, 'danger');
                         return false;
+                    }
                 }
             }
         }

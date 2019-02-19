@@ -1,157 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Redes de Computadores</h1>
-    <h2 class="mt-2">1º periodo</h2>
+    <h1>{{ $course->name }}</h1>
+    {{--<h2 class="mt-2">1º periodo</h2>--}}
 
-    <div class="semesters">
-        <a href="#">1º</a>
-        <a href="#">2º</a>
-        <a href="#">3º</a>
-        <a href="#">4º</a>
-        <a href="#" >5º</a>
-        <a href="#" >6º</a>
-        <a href="#" >7º</a>
-        <a href="#" >8º</a>
-        <a href="#" >9º</a>
-        <a href="#" >10º</a>
-        <a href="#" >11º</a>
-        <a href="#" >12º</a>
+    <div class="categories" data-tabgroup="tabgroup">
+        @for($x=1; $x<=$course->periods; $x++)
+            <a href="#tab{{ $x }}" title="{{ $x }} período">{{ $x }}</a>
+        @endfor
     </div>
 
-    <div class="schedule-scroller">
-        <table class="schedule">
-            <thead>
-                <tr>
-                    <th>Horário</th>
-                    <th>Segunda</th>
-                    <th>Terça</th>
-                    <th>Quarta</th>
-                    <th>Quinta</th>
-                    <th>Sexta</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                            <span class="font-bold">M1</span>
-                            <span class="text-sm">07:00 - 07:50</span>
-                        </div>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                            <span class="font-bold">PORT INSTR</span>
-                            <span class="text-sm">JAEL - U</span>
-                            <span class="text-sm text-red-dark">Sala 17</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                            <span class="font-bold">FIS APLIC COMP</span>
-                            <span class="text-sm">ALLYSSON M - U</span>
-                            <span class="text-sm text-red-dark">LAB FÍSIC</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                            <span class="font-bold">PORT INSTR</span>
-                            <span class="text-sm">JAEL - U</span>
-                            <span class="text-sm text-red-dark">Sala 17</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                            <span class="font-bold">PORT INSTR</span>
-                            <span class="text-sm">JAEL - U</span>
-                            <span class="text-sm text-red-dark">Sala 17</span>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                            <span class="font-bold">M1</span>
-                            <span class="text-sm">07:00 - 07:50</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                            <span class="font-bold">PORT INSTR</span>
-                            <span class="text-sm">JAEL - U</span>
-                            <span class="text-sm text-red-dark">Sala 17</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                            <span class="font-bold">PORT INSTR</span>
-                            <span class="text-sm">JAEL - U</span>
-                            <span class="text-sm text-red-dark">Sala 17</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                            <span class="font-bold">FIS APLIC COMP</span>
-                            <span class="text-sm">ALLYSSON M - U</span>
-                            <span class="text-sm text-red-dark">LAB FÍSIC</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                            <span class="font-bold">PORT INSTR</span>
-                            <span class="text-sm">JAEL - U</span>
-                            <span class="text-sm text-red-dark">Sala 17</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                        </div>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                            <span class="font-bold">M1</span>
-                            <span class="text-sm">07:00 - 07:50</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                            <span class="font-bold">PORT INSTR</span>
-                            <span class="text-sm">JAEL - U</span>
-                            <span class="text-sm text-red-dark">Sala 17</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                            <span class="font-bold">PORT INSTR</span>
-                            <span class="text-sm">JAEL - U</span>
-                            <span class="text-sm text-red-dark">Sala 17</span>
-                        </div>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                            <span class="font-bold">PORT INSTR</span>
-                            <span class="text-sm">JAEL - U</span>
-                            <span class="text-sm text-red-dark">Sala 17</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="flex flex-col leading-normal">
-                            <span class="font-bold">PORT INSTR</span>
-                            <span class="text-sm">JAEL - U</span>
-                            <span class="text-sm text-red-dark">Sala 17</span>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="tabgroup">
+        @for($x = 1; $x <= $course->periods; $x++)
+            <div id="tab{{ $x }}">
+                @include('partials.table-days-times-by-course-period', ['days' => $days, 'times' => $times, 'dayTimeReservations' => $reservationsPeriod[$x]])
+            </div>
+        @endfor
     </div>
 
+@endsection
+
+@section('additional-css-js')
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            $('.tabgroup > div').hide();
+            $('.tabgroup > div:first-of-type').show();
+
+            $('.categories a:first-of-type').addClass('active')
+            $('.categories a').click(function(e){
+                e.preventDefault();
+
+                let $this = $(this),
+                    tabgroup = '.' + $this.parents('.categories').data('tabgroup'),
+                    others = $this.siblings(),
+                    target = $this.attr('href')
+
+                others.removeClass('active')
+                $this.addClass('active')
+
+                $(tabgroup).children('div').hide()
+                $(target).show()
+            });
+        });
+    </script>
 @endsection

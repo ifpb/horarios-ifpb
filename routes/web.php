@@ -14,7 +14,7 @@
 Route::get('/', 'MainController@home')->name('main.home');
 
 Route::get('cursos', 'MainController@courses')->name('main.courses');
-Route::get('cursos/{course}', 'MainController@course')->name('main.course')->where(['course' => '[a-z0-9-]+']);
+Route::get('cursos/{slug}', 'MainController@course')->name('main.course')->where(['course' => '[a-z0-9-]+']);
 
 Route::group(array('prefix' => 'admin'), function()
 {

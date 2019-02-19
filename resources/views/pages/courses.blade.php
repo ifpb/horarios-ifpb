@@ -27,7 +27,7 @@
                     <tbody>
                         @foreach($educationLevel->courses as $course)
                             <tr>
-                                <td><a href="#">{{ $course->name }}</a></td>
+                                <td><a href="{{ $course->url() }}" title="{{ $course->name }}">{{ $course->name }}</a></td>
                                 <td>{{ $course->initials }}</td>
                                 <td>{{ $course->periods }}</td>
                             </tr>

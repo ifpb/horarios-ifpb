@@ -20,6 +20,11 @@ class Course extends Model
         });
     }
 
+    public function url()
+    {
+        return url('/cursos/' . $this->slug);
+    }
+
     public function shifts()
     {
         return $this->belongsToMany(Shift::class);
