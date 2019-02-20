@@ -25,7 +25,7 @@ Route::get('laboratorios/{slug}', 'MainController@classroom')->name('main.lab')-
 Route::get('professores', 'MainController@professors')->name('main.professors');
 Route::get('professores/{id}', 'MainController@professor')->name('main.professor')->where(['id' => '[0-9]+']);
 
-Route::group(array('prefix' => 'admin'), function()
+Route::group(array('prefix' => 'admin', 'middleware' => 'auth'), function()
 {
     Route::get('/', function() {
         return view('pages.admin.home');
@@ -176,7 +176,7 @@ Route::group(array('prefix' => 'admin'), function()
 });
 
 
-Auth::routes();
+Auth::routes(['register' => false]);
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
