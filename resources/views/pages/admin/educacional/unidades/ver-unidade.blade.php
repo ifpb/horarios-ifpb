@@ -24,7 +24,7 @@
         </div>
     </form>
 
-    {{--TODO: Dinamizar exibição de cursos e professores--}}
+
     <hr />
     <h2 class="mb-3">Cursos</h2>
 
@@ -61,7 +61,6 @@
     <h2 class="mb-3">Professores</h2>
 
 
-    {{--TODO: Talvez extrair essas tabelas para partials e evitar repetição de código--}}
     <div class="table-responsive">
         <table class="table dataTable">
             <thead>

@@ -20,7 +20,7 @@ button, [type="button"], [type="reset"], [type="submit"] {
 }
 
 a {
-  @apply text-green-dark no-underline
+  @apply text-green-darker no-underline
 }
 
 a:hover {
@@ -92,10 +92,10 @@ header {
 }
 
 .categories {
-  @apply flex flex-col mt-5 bg-green-darker;
+  @apply flex flex-col mt-5 bg-green-darkest;
 
   a {
-    @apply py-4 w-full bg-green text-center font-semibold mb-px text-white
+    @apply py-4 w-full bg-green-darker text-center font-semibold mb-px text-white
   }
 
   a:hover {
@@ -124,7 +124,7 @@ header {
   @apply w-full mt-4 text-center;
 
   thead {
-    @apply bg-green-dark text-white;
+    @apply bg-green-darker text-white;
 
     th {
       @apply font-semibold py-3 hidden px-3;
@@ -196,7 +196,7 @@ header {
   @apply w-full mt-4 text-center;
 
   thead {
-    @apply bg-green-dark text-white;
+    @apply bg-green-darker text-white;
 
     th {
       @apply font-semibold py-3 text-center;
@@ -312,7 +312,7 @@ header {
   }
 }
 
-// Correção dataTables
+// VENDOR OPTIONS (DATA TABLES)
 .dataTables_wrapper {
   height:auto;
   overflow-y: hidden;
@@ -343,6 +343,22 @@ header {
     .row:first-child, .row:last-child {
       @apply flex-row;
     }
+  }
+}
+
+// Vendor options TYPEAHEAD
+
+.autocomplete-suggestions {
+  @apply w-full bg-white mt-2 text-grey-darker p-2 rounded-lg;
+  top:120%;
+
+  .autocomplete-suggestion {
+    @apply py-2 px-1;
+    cursor: pointer;
+  }
+
+  .autocomplete-selected {
+    @apply bg-grey-lighter;
   }
 }
 

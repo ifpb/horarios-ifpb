@@ -42,7 +42,6 @@
     </form>
 
 
-    {{--TODO: Dinamizar Horários da Sala--}}
     <h2>Horarios da sala</h2>
 
     @include('partials.tabela-dias-horarios-admin', compact('days', 'times', 'dayTimeReservations'))

@@ -11,7 +11,7 @@
         @endforeach
     </div>
 
-    <input type="text" placeholder="Digite algo para filtrar" class="search-input-filter">
+    <input type="text" aria-label="Digite algo para filtrar" placeholder="Digite algo para filtrar" class="search-input-filter">
 
     <div class="tabgroup">
         @foreach($educationLevels as $educationLevel)

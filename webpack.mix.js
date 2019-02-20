@@ -17,11 +17,11 @@ require('laravel-mix-purgecss');
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/css/app.scss', 'public/css')
     .tailwind()
-    .purgeCss()
-    .styles([
-        'public/css/bootstrap.css',
-        'public/css/app.css'
-    ], 'public/css/app.css');
+    .purgeCss();
+    // .styles([
+    //     'public/css/bootstrap.css',
+    //     'public/css/app.css'
+    // ], 'public/css/app.css');
 
 if (mix.inProduction()) {
   mix.version();

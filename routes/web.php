@@ -14,7 +14,16 @@
 Route::get('/', 'MainController@home')->name('main.home');
 
 Route::get('cursos', 'MainController@courses')->name('main.courses');
-Route::get('cursos/{slug}', 'MainController@course')->name('main.course')->where(['course' => '[a-z0-9-]+']);
+Route::get('cursos/{slug}', 'MainController@course')->name('main.course')->where(['slug' => '[a-z0-9-]+']);
+
+Route::get('salas', 'MainController@classrooms')->name('main.classrooms');
+Route::get('salas/{slug}', 'MainController@classroom')->name('main.classroom')->where(['slug' => '[a-z0-9-]+']);
+
+Route::get('laboratorios', 'MainController@labs')->name('main.labs');
+Route::get('laboratorios/{slug}', 'MainController@classroom')->name('main.lab')->where(['slug' => '[a-z0-9-]+']);
+
+Route::get('professores', 'MainController@professors')->name('main.professors');
+Route::get('professores/{id}', 'MainController@professor')->name('main.professor')->where(['id' => '[0-9]+']);
 
 Route::group(array('prefix' => 'admin'), function()
 {

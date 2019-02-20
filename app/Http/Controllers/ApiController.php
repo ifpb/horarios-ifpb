@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Block;
+use App\Course;
 use App\ClassroomReservation;
 use App\TeachingClass;
 use App\Day;
@@ -10,6 +11,30 @@ use App\Time;
 
 class ApiController extends Controller
 {
+    public function getCourses()
+    {
+        if(!isset($_GET['query']))
+            return '';
+
+        $courses = Course::where('name', 'LIKE', "%{$_GET['query']}%")->get(['name', 'slug']);
+
+        $coursesFormatted = [];
+        foreach($courses as $course)
+            $coursesFormatted[] = [
+                'value' => $course->name,
+                'data' => '/cursos/' . $course->slug
+            ];
+
+        $query = isset($_GET['query']) ? $_GET['query'] : '';
+
+        $data = [
+            'query' => $query,
+            'suggestions' => $coursesFormatted
+        ];
+
+        return $data;
+    }
+
     public function getBlockClassrooms(Block $block)
     {
         $block->load('classrooms:id,name,block_id');

@@ -20,6 +20,11 @@ class Professor extends Model
         });
     }
 
+    public function url()
+    {
+        return url('/professores/' . $this->id);
+    }
+
     public function days()
     {
         return $this->belongsToMany(Day::class);

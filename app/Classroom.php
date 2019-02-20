@@ -20,6 +20,11 @@ class Classroom extends Model
         });
     }
 
+    public function url()
+    {
+        return url('/salas/' . $this->slug);
+    }
+
     public function block()
     {
         return $this->belongsTo(Block::class);

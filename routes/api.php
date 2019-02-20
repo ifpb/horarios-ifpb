@@ -19,6 +19,7 @@ Route::group(array('prefix' => 'tabelas'), function()
 
 Route::group(array('prefix' => 'info'), function()
 {
+    Route::get('cursos', 'ApiController@getCourses')->name('api.infos.cursos');
     Route::get('salas-do-bloco/{block}', 'ApiController@getBlockClassrooms')->name('api.infos.salas-do-bloco');
     Route::get('reserva-de-sala/disponibilidade-professor/{teachingClass}/{day}/{time}', 'ApiController@isProfessorAvailable')->name('api.infos.disponibilidade-professor');
 });

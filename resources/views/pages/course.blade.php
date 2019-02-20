@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $course->name)
+
 @section('content')
     <h1>{{ $course->name }}</h1>
     {{--<h2 class="mt-2">1º periodo</h2>--}}
